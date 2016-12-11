@@ -5,8 +5,8 @@
         
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link  rel="stylesheet" href=<?php echo $_SERVER['DOCUMENT_ROOT']."/mvc/app/views/home/responsive.css";?>>
-       <link rel="stylesheet" href=<?php echo $_SERVER['DOCUMENT_ROOT']."/mvc/app/views/home/style.css";?>>
+        <link type="text/css" rel="stylesheet" href="/mvc/public/css/responsive.css">
+        <link type="text/css" rel="stylesheet" href="/mvc/public/css/style.css">
 
         <?php $controller->cookieSytle2CSS(); ?>
 
@@ -77,6 +77,7 @@
                     <li><a href="?aufgabe=2">Aufgabe 2</a></li>
                     <li><a href="?aufgabe=3">Aufgabe 3</a></li>
                     <li><a href="?inhaltDB=1">Inhalt DB Anzeigen</a></li>
+                     <li><a href="bildhochladen">Aufgabe6</a></li>
                     <?php $controller -> loginNAV(); ?>
                 </ul>
             </div>

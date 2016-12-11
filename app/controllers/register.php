@@ -13,43 +13,37 @@
  */
 class register extends Controller
 {
-    public function __construct()
-    {
-       
-    }
 
-
-   public function index()
+    public function index()
     {
         $this->setFehler('koRN');
-        
-       $this->view('home/index', 'register');
+
+        $this->view('home/index', 'register');
     }
-    
+
     public function registrieren()
     {
         require_once '../app/models/DatenbankGamp.php';
         DatenbankGamp::register();
     }
-    
+
     public function sectionInhalt()
     {
         require_once '../app/views/login/loginFormular.php';
     }
-    
+
     public function stimmtNichtUeberein()
     {
-      
-       $this->setFehler('Passwort stimmt nicht überein!'); 
-       
+
+        $this->setFehler('Passwort stimmt nicht überein!');
     }
-    
-    function fuck(){
-    echo 'fu';
-    $this->setFehler('dddd');
-    $this->getFehler();
-    $this->index();
+
+    function fuck()
+    {
+        echo 'fu';
+        $this->setFehler('dddd');
+        $this->getFehler();
+        $this->index();
     }
-    
-    
+
 }

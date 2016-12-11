@@ -5,6 +5,11 @@ class Controller
 
     protected $fehler = '';
 
+    public function index()
+    {
+        $this->view('home/index',$this);      
+    }
+
     public function setCookieForStyle()
     {
         session_start();
@@ -24,7 +29,7 @@ class Controller
     {
         if (isset($_COOKIE['stil']) && $_COOKIE['stil'] == 2)
         {
-            echo '<link type="text/css" rel="stylesheet" href="../app/views/home/style2.css">';
+            echo '<link type="text/css" rel="stylesheet" href="/mvc/public/style2.css">';
         }
     }
 

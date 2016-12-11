@@ -13,15 +13,16 @@
  */
 class login extends Controller
 {
+
     public function index()
     {
-       $controller=new login();
-       $this->view('home/index','login');
+        $this->view('home/index', 'login');
     }
-    
+
     public function sectionInhalt()
     {
-       
+
         require_once '../app/views/login/loginformular.php';
     }
+
 }
