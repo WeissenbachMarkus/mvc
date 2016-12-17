@@ -16,11 +16,7 @@ class bildhochladen extends Controller
 
     public function sectionInhalt()
     {
-        echo '<form action="bildhochladen/verarbeitung" method="post" enctype="multipart/form-data">
-    Select image to upload:<br><br>
-    <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
-    <input type="submit" value="Upload Image" name="submit">
-</form>';
+        $this->view('/bildhochladen/FormularBildHochladen',$this);
     }
 
     public function verarbeitung()

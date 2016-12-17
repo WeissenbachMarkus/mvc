@@ -87,7 +87,6 @@
                 <p>
                     <?php
                     $controller->sectionInhalt();
-                    $controller->getFehler();
                     ?>
                 </p>
 

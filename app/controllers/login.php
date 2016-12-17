@@ -21,7 +21,6 @@ class login extends Controller
 
     public function sectionInhalt()
     {
-
         require_once '../app/views/login/loginformular.php';
     }
 

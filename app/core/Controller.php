@@ -3,9 +3,8 @@
 class Controller
 {
 
-    protected $fehler = '';
-    protected bildhochladen
-
+    protected $logger = '';
+  
 
     public function index()
     {
@@ -70,17 +69,6 @@ class Controller
     {
         $controller = new $controller;
         require_once '../app/views/' . $view . '.php';
-    }
-
-    function setFehler($fehler)
-    {
-        $this->fehler = $fehler;
-    }
-
-    function getFehler()
-    {
-
-        echo $this->fehler;
     }
 
 }

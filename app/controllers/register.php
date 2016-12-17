@@ -17,12 +17,12 @@ class register extends Controller
     public function index()
     {
         $this->setFehler('koRN');
-
         $this->view('home/index', 'register');
     }
 
     public function registrieren()
     {
+        
         require_once '../app/models/DatenbankGamp.php';
         DatenbankGamp::register();
     }
@@ -35,15 +35,9 @@ class register extends Controller
     public function stimmtNichtUeberein()
     {
 
-        $this->setFehler('Passwort stimmt nicht überein!');
+        
     }
 
-    function fuck()
-    {
-        echo 'fu';
-        $this->setFehler('dddd');
-        $this->getFehler();
-        $this->index();
-    }
+  
 
 }
