@@ -4,9 +4,12 @@ class Controller
 {
 
     protected $fehler = '';
+    protected bildhochladen
+
 
     public function index()
     {
+        
         $this->view('home/index',$this);      
     }
 

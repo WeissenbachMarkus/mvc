@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
-        
+
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" rel="stylesheet" href="/mvc/public/css/responsive.css">
         <link type="text/css" rel="stylesheet" href="/mvc/public/css/style.css">
@@ -67,7 +67,7 @@
 
         <div class="header">
             <h1>PHP/Javascript Gamper</h1>
-            <?php $controller -> loginHeader(); ?>
+            <?php $controller->loginHeader(); ?>
         </div>
 
         <div class="row">
@@ -76,9 +76,9 @@
                     <li><a href="?aufgabe=1">Aufgabe 1</a></li>
                     <li><a href="?aufgabe=2">Aufgabe 2</a></li>
                     <li><a href="?aufgabe=3">Aufgabe 3</a></li>
-                    <li><a href="?inhaltDB=1">Inhalt DB Anzeigen</a></li>
-                     <li><a href="bildhochladen">Aufgabe6</a></li>
-                    <?php $controller -> loginNAV(); ?>
+                    <li><a href="bildhochladen">Aufgabe6</a></li>
+                    <li><a href="datenbankInhaltAnzeigen">Inhalt DB Anzeigen</a></li>
+                    <?php $controller->loginNAV(); ?>
                 </ul>
             </div>
 
@@ -87,7 +87,7 @@
                 <p>
                     <?php
                     $controller->sectionInhalt();
-                    $controller->getFehler();                   
+                    $controller->getFehler();
                     ?>
                 </p>
 
@@ -104,9 +104,9 @@
 
         <div class="footer col-m-12">
             <p><?php
-                    $datum = date("Y");
-                    echo '&copy;Markus Weissenbach ' . $datum;
-                    ?>
+                $datum = date("Y");
+                echo '&copy;Markus Weissenbach ' . $datum;
+                ?>
             </p>
             <a href="?stil=2">
                 Stil2
