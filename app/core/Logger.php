@@ -32,21 +32,26 @@ class Logger
             return self::$loggerInstanz;
         } else
         {
-            new Logger($dateipfad);
+            self::$loggerInstanz = new Logger($dateipfad);
+            return self::$loggerInstanz;
         }
     }
 
     public function setDateipfad($dateipfad)
     {
+        if (substr_count($dateipfad, '/') < substr_count($dateipfad, '\\'))
+            $dateipfad = str_replace('\\', '/', $dateipfad);
+
         $directories = split('/', $dateipfad);
 
         $logdatei = $directories[count($directories) - 1];
 
-        $dateipfad = substr($dateipfad, -(strlen($logdatei)));
+        $dateipfad = substr($dateipfad, 0, -(strlen($logdatei)));
 
-        if (file_exists($dateipfad))
+
+        if (is_dir($dateipfad))
         {
-            $this->dateipfad = $dateipfad.$logdatei;
+            $this->dateipfad = $dateipfad . $logdatei;
         } else
         {
             throw new Exception("Pfad existiert nicht!");
@@ -63,22 +68,27 @@ class Logger
         switch ($loglevel)
         {
             case 0:
-                $loglevel = 'Info';
+                $loglevel = 'INFO';
                 break;
             case 1:
-                $loglevel = 'Warning';
+                $loglevel = 'WARNING';
                 break;
             case 2:
-                $loglevel = 'Error';
+                $loglevel = 'ERROR';
                 break;
         }
 
-        $logFile = fopen($this->getDateipfad(), 'w');
-        fwrite($logFile, $loglevel . ' ' . $message . '\n');
+        if (file_exists($this->dateipfad))
+            $logFile = fopen($this->getDateipfad(), 'a');
+        else
+            $logFile = fopen($this->getDateipfad(), 'w');
+
+        $date = new DateTime();
+        fwrite($logFile, date('Y-m-d H:i', $date->getTimestamp()) . "    " . $loglevel . "    " . $message . "\n");
         fclose($logFile);
     }
 
-    function getDateipfad()
+    public function getDateipfad()
     {
         return $this->dateipfad;
     }

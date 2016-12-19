@@ -59,10 +59,15 @@ class Controller
         echo 'Index-Seite';
     }
 
+    /**
+     * Lierfert Datenbankinstanz
+     * @param type $model Name der Datenbank Klasse angeben
+     * @return type Instanz der Datenbank
+     */
     protected function model($model)
     {
         require_once '../app/models/' . $model . '.php';
-        return new $model();
+        return $model::getDatabaseInstance($model);
     }
 
     public function view($view = 'home/index', $controller, $data = [])
