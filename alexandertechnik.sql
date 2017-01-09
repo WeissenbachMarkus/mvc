@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `alarmfunction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `alarmfunction` (
-  `af_id` int(11) NOT NULL,
+  `af_id` int(11) NOT NULL AUTO_INCREMENT,
   `af_dateTime` datetime NOT NULL,
   `af_message` varchar(45) DEFAULT NULL,
   `User_u_email` varchar(45) NOT NULL,
@@ -50,9 +50,10 @@ DROP TABLE IF EXISTS `chargeable`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `chargeable` (
-  `Preis` int(11) NOT NULL,
-  PRIMARY KEY (`Preis`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `c_price` int(11) NOT NULL,
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`c_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,6 +62,7 @@ CREATE TABLE `chargeable` (
 
 LOCK TABLES `chargeable` WRITE;
 /*!40000 ALTER TABLE `chargeable` DISABLE KEYS */;
+INSERT INTO `chargeable` VALUES (11,1);
 /*!40000 ALTER TABLE `chargeable` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +131,7 @@ CREATE TABLE `imprint` (
   `i_id` int(11) NOT NULL AUTO_INCREMENT,
   `i_text` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`i_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,13 +229,13 @@ CREATE TABLE `modul` (
   `m_finished` tinyint(4) DEFAULT '0',
   `m_showInProgress` tinyint(4) DEFAULT '0',
   `User_u_email` varchar(50) DEFAULT 'Null',
-  `chargeable_Preis` int(11) DEFAULT NULL,
+  `chargeable_c_id` int(11) NOT NULL,
   PRIMARY KEY (`m_name`),
   UNIQUE KEY `m_name_UNIQUE` (`m_name`),
   KEY `fk_Modul_User1_idx` (`User_u_email`),
-  KEY `fk_modul_chargeable1_idx` (`chargeable_Preis`),
+  KEY `fk_modul_chargeable1_idx` (`chargeable_c_id`),
   CONSTRAINT `fk_Modul_User1` FOREIGN KEY (`User_u_email`) REFERENCES `user` (`u_email`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_modul_chargeable1` FOREIGN KEY (`chargeable_Preis`) REFERENCES `chargeable` (`Preis`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_modul_chargeable1` FOREIGN KEY (`chargeable_c_id`) REFERENCES `chargeable` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -369,10 +371,11 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `u_nickname` varchar(20) NOT NULL,
-  `u_icon` varchar(50) DEFAULT NULL,
+  `u_icon` varchar(50) DEFAULT '../app/models/pictures/userIcons/default.jpg',
   `u_email` varchar(45) NOT NULL,
+  `u_password` varchar(256) NOT NULL,
+  `u_admin` tinyint(4) DEFAULT '0',
   `u_masterplanViewed` tinyint(4) DEFAULT '0',
-  `u_password` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`u_email`),
   UNIQUE KEY `u_nickname_UNIQUE` (`u_nickname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -384,6 +387,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES ('markus2','../app/models/pictures/userIcons/default.jpg','markus2@gmx.at','60779550b85deb565cae37b08067783680a31d38319678f91738bc0dae17f2e6',0,0),('markus','../app/models/pictures/userIcons/default.jpg','markus@gmx.at','03d32f1e2b6a2a016c21f326d651f34ae47d13d424b29d961309963a8c28e96e',1,0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -396,4 +400,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-24 16:57:45
+-- Dump completed on 2017-01-09  8:55:44
