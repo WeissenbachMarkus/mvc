@@ -1,22 +1,27 @@
-* {
+* 
+{
     box-sizing: border-box;
 }
 
-.row::after {
+.row::after 
+{
     content: "";
     clear: both;
     display: block;
 }
 
-[class*="col-"] {
+[class*="col-"] 
+{
     float: left;
     padding: 15px;
 }
 
 /* For mobile phones: */
-[class*="col-"] {
+[class*="col-"] 
+{
     width: 100%;
 }
+
 @media only screen and (min-width: 600px) {
     /* For tablets: */
     .col-m-1 {width: 8.33%;}
@@ -31,9 +36,8 @@
     .col-m-10 {width: 83.33%;}
     .col-m-11 {width: 91.66%;}
     .col-m-12 {width: 100%;}
-
-
 }
+
 @media only screen and (min-width: 768px) {
     /* For desktop: */
     .col-1 {width: 8.33%;}
@@ -48,7 +52,6 @@
     .col-10 {width: 83.33%;}
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
-
 }
 
 .aside,#side
@@ -56,30 +59,33 @@
     margin:0;
     height: 414px;
 }
+
 #side{padding: 0;
       margin-top: 15px;
 }
+
 html {
     position: relative;
     min-height: 100%;
 }
+
 body {
     /* Margin bottom by footer height */
- margin-bottom: 60px;
-}
-.footer {
-
- position: absolute;
- bottom: 0%;
- width: 99%;
-
- /* Set the fixed height of the footer here */
-height: 60px;
-//background-color: #f5f5f5;
+    margin-bottom: 60px;
 }
 
-form{   
+.footer 
+{
+    position: absolute;
+    bottom: 0%;
+    width: 99%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    //background-color: #f5f5f5;
+}
 
-margin-left: 12%;
+form
+{   
+    margin-left: 12%;
 }
 

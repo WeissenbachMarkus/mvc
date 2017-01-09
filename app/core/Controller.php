@@ -1,20 +1,73 @@
 <?php
 
-class Controller
+/**
+ * Controller Elternklasse
+ * verfügt über generelle Methoden
+ */
+abstract class Controller
 {
 
-    protected $logger = '';
-  
+    private $logger;
+
+    public function __construct()
+    {
+        $this->setLogger();
+    }
+
+    protected function setFehler($message)
+    {
+        $this->startSession();
+        $_SESSION['fehler'][] = $message;
+    }
+
+    protected function getFehlerBool()
+    {
+        return (!empty($_SESSION['fehler']));
+    }
+
+    protected function fehler()
+    {
+        $this->startSession();
+        if (!empty($_SESSION['fehler']))
+        {
+
+            foreach ($_SESSION['fehler'] as $value)
+                if (count($_SESSION['fehler']) > 1)
+                    echo $value . '<br>';
+                else
+                    echo $value;
+
+            unset($_SESSION['fehler']);
+        }
+    }
+
+    protected function startSession()
+    {
+        if (!isset($_SESSION))
+        {
+            session_start();
+        }
+    }
+
+    private function setLogger()
+    {
+        require_once '../app/core/Logger.php';
+        $this->logger = new Logger('../app/logs/' . get_class($this) . '.txt');
+    }
+
+    protected function getLogger()
+    {
+        return $this->logger;
+    }
 
     public function index()
     {
-        
-        $this->view('home/index',$this);      
+        $this->view($this, 'general/index');
     }
 
-    public function setCookieForStyle()
+    protected function setCookieForStyle()
     {
-        session_start();
+        $this->startSession();
 
         if (isset($_GET['stil']) && $_GET['stil'] == 2)
         {
@@ -27,7 +80,7 @@ class Controller
         }
     }
 
-    public function cookieSytle2CSS()
+    protected function cookieSytle2CSS()
     {
         if (isset($_COOKIE['stil']) && $_COOKIE['stil'] == 2)
         {
@@ -35,45 +88,51 @@ class Controller
         }
     }
 
-    public function loginHeader()
+    protected function loginHeader()
     {
-        if (!isset($_SESSION['User']))
-        {
-            echo'<a href="login">Login</a><a href="register">Registrieren</a>';
-        } else
-        {
-            echo'<a href="?logout=1">Logout!</a><p>Hallo ' . htmlspecialchars($_SESSION['User']) . '</p>';
-        }
+        echo'<a href="' . get_class($this) . '/logout">Logout!</a><p>Hallo ' . htmlspecialchars($_SESSION['user']) . '</p>';
     }
 
-    public function loginNAV()
+    protected function navigation()
     {
-        if (isset($_SESSION['eingeloggt']) && $_SESSION['eingeloggt'] == 'ja' && !isset($_Get['logout']))
-        {
-            echo' <li><a href="?special=1">Special</a></li>';
-        }
+       
     }
 
-    public function sectionInhalt()
-    {
-        echo 'Index-Seite';
-    }
+    /**
+     * Inhalt der Section muss überschrieben werden
+     */
+    protected abstract function sectionInhalt();
 
     /**
      * Lierfert Datenbankinstanz
      * @param type $model Name der Datenbank Klasse angeben
      * @return type Instanz der Datenbank
      */
-    protected function model($model)
+    protected function getModel($model)
     {
         require_once '../app/models/' . $model . '.php';
         return $model::getDatabaseInstance($model);
     }
 
-    public function view($view = 'home/index', $controller, $data = [])
+    /**
+     * Wird verwendet um Templates zu laden
+     * @param type $controllerChild muss null sein wenn kein Objekt erstellt werden soll, sonst Objektname uebergeben oder Referenz
+     * @param type $view der Pfad zum Template ab dem Ordner "views"
+     * @param type $data daten die übergeben werden sollen.
+     */
+    public function view($controllerChild, $view = 'general/index', $data = [])
     {
-        $controller = new $controller;
-        require_once '../app/views/' . $view . '.php';
+        if ($controllerChild != null)
+            $controller = new $controllerChild;
+
+        require '../app/views/' . $view . '.php';
+    }
+
+    public function logout()
+    {
+        $this->startSession();
+        unset($_SESSION['user']);
+        header('Location: http://localhost/mvc/public/login');
     }
 
 }

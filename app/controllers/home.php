@@ -1,6 +1,11 @@
 <?php
 
-class Home extends Controller
+class home extends Controller
 {
-  
+    
+    public function sectionInhalt()
+    {
+        echo 'Startseite!';
+    }
+
 }

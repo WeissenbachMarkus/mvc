@@ -16,12 +16,12 @@ class bildhochladen extends Controller
 
     public function sectionInhalt()
     {
-        $this->view('/bildhochladen/FormularBildHochladen',$this);
+        $this->view($this, '/bildhochladen/FormularBildHochladen');
     }
 
     public function verarbeitung()
     {
-        $target_dir = "../../mvc/public/bilder/";
+        $target_dir = "../app/core/pictures/userIcon";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -78,11 +78,14 @@ class bildhochladen extends Controller
         }
     }
 
+    /**
+     * Verwendet Model um Pfad zum Bild in die Datenbank zu schreiben
+     * @param type $bildverzeichnis : Pfad
+     */
     private function linkHochladen($bildverzeichnis)
     {
         require_once '../app/models/DatenbankGamp.php';
-        $datenbank = DatenbankGamp::modulObjekthinzufuegen($bildverzeichnis);  
+        $datenbank = DatenbankGamp::modulObjekthinzufuegen($bildverzeichnis);
     }
 
 }
-

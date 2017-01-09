@@ -60,45 +60,35 @@
             }
 
         </script>
-
-
     </head>
     <body>
-
-        <div class="header">
+        <div class="header col-12 col-m-12">
             <h1>PHP/Javascript Gamper</h1>
             <?php $controller->loginHeader(); ?>
         </div>
 
         <div class="row">
-            <div class="col-3 col-m-3 menu">
+            <div class="col-3 col-m-4 menu">
                 <ul>
-                    <li><a href="?aufgabe=1">Aufgabe 1</a></li>
-                    <li><a href="?aufgabe=2">Aufgabe 2</a></li>
-                    <li><a href="?aufgabe=3">Aufgabe 3</a></li>
-                    <li><a href="bildhochladen">Aufgabe6</a></li>
-                    <li><a href="datenbankInhaltAnzeigen">Inhalt DB Anzeigen</a></li>
-                    <?php $controller->loginNAV(); ?>
+                    <div class = "dropdown">
+                        <li><a id = "user" href = "user">User</a></li>
+                        <div id = "userHidden">
+                            <li><a href ="register">hinzufuegen</a></li>
+                            <li><a href ="bildhochladen">bildhochladen</a></li>
+                        </div>
+                    </div>
+                    <li><a href = "modul">Modul</a></li>
+                    <li><a href = "message">Message</a></li>
+                    <li><a href = "statistic">Statistic</a></li>
                 </ul>
+                <?php $controller->navigation(); ?>
             </div>
 
-            <div id="section" class="col-6 col-m-9">
-
-                <p>
-                    <?php
-                    $controller->sectionInhalt();
-                    ?>
-                </p>
-
-
+            <div id="section" class="col-8 col-m-8">
+                <?php $controller->sectionInhalt(); ?>
+                <br>
+                <?php $controller->fehler(); ?>
             </div>
-
-            <div id="side" class="col-3 col-m-12">
-                <div class="aside">
-
-                </div>
-            </div>
-
         </div>
 
         <div class="footer col-m-12">
@@ -107,15 +97,9 @@
                 echo '&copy;Markus Weissenbach ' . $datum;
                 ?>
             </p>
-            <a href="?stil=2">
-                Stil2
-            </a>
-            <a href="?stil=1">
-                Stil
-            </a>
-
+            <a href="?stil=2"> Stil2</a>
+            <a href="?stil=1"> Stil </a>
         </div>
-
     </body>
 </html>
 

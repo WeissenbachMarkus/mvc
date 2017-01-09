@@ -1,5 +1,5 @@
 
-<form action="upload.php" method="post" enctype="multipart/form-data">
+<form action="bildhochladen/verarbeitung" method="post" enctype="multipart/form-data">
     Select image to upload:
     <input type="file" name="fileToUpload" id="fileToUpload">
     <br>

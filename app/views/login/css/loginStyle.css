@@ -1,0 +1,43 @@
+section
+{
+    margin:0 auto;
+    width:50%;
+    height:90%;
+
+  // border: solid 1px red;
+}
+#fehler
+{
+    position: absolute;
+    bottom: 10%;
+    left: 30%;
+}
+form{
+    width:300px;
+    height:200px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin:-100px 0 0 -150px;
+   
+    
+   //border: solid 1px yellow;
+}
+
+form input[type=submit]
+{
+    float: right;
+}
+
+body
+{
+    position: relative;
+  height: 90%;
+  
+ //border: solid 1px blue;
+}
+
+html{
+    height: 100%;
+   // border: solid 1px green;
+}

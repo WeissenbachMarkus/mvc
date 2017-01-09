@@ -1,0 +1,40 @@
+2017-01-05 14:43    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 15:20    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 15:35    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 15:56    ERROR    Prepare fehlgeschlagen!
+2017-01-05 15:58    ERROR    Prepare fehlgeschlagen!
+2017-01-05 16:00    ERROR    Prepare fehlgeschlagen!
+2017-01-05 16:03    ERROR    Prepare fehlgeschlagen!
+2017-01-05 16:10    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:10    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:10    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:10    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:10    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:10    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:10    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:10    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:11    ERROR    Prepare fehlgeschlagen!
+2017-01-05 16:12    ERROR    Prepare fehlgeschlagen!
+2017-01-05 16:12    ERROR    Prepare fehlgeschlagen!
+2017-01-05 16:12    ERROR    Prepare fehlgeschlagen!
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:16    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 16:17    ERROR    Prepare fehlgeschlagen!
+2017-01-05 16:31    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-05 17:50    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement

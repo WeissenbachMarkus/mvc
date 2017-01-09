@@ -8,36 +8,20 @@
 class Logger
 {
 
-    private static $loggerInstanz;
+
     private $dateipfad;
 
-    private function __construct($dateipfad = '../app/core/log.txt')
+    public function __construct($dateipfad = '../app/core/log.txt')
     {
         $this->setDateipfad($dateipfad);
     }
 
     /**
-     * Singleton, wenn ein anderer Pfad angegeben wird, wird der alte überschrieben
+     * ueberprueft das setzten des Dateipfades
      * @param type $dateipfad
-     * @return type Logger
+     * @throws Exception
      */
-    public static function getLogger($dateipfad = '../app/core/log.txt')
-    {
-        if (self::$loggerInstanz != null)
-        {
-            if ($dateipfad != self::$loggerInstanz->getDateipfad())
-            {
-                self::$loggerInstanz->setDateipfad($dateipfad);
-            }
-            return self::$loggerInstanz;
-        } else
-        {
-            self::$loggerInstanz = new Logger($dateipfad);
-            return self::$loggerInstanz;
-        }
-    }
-
-    public function setDateipfad($dateipfad)
+    private function setDateipfad($dateipfad)
     {
         if (substr_count($dateipfad, '/') < substr_count($dateipfad, '\\'))
             $dateipfad = str_replace('\\', '/', $dateipfad);
@@ -54,7 +38,7 @@ class Logger
             $this->dateipfad = $dateipfad . $logdatei;
         } else
         {
-            throw new Exception("Pfad existiert nicht!");
+            throw new Exception("Pfad: ".$dateipfad."existiert nicht!");
         }
     }
 
