@@ -38,3 +38,16 @@
 2017-01-05 16:17    ERROR    Prepare fehlgeschlagen!
 2017-01-05 16:31    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
 2017-01-05 17:50    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-01-09 09:28    ERROR    Connection failed: Access denied for user 'user'@'localhost' (using password: YES)
+2017-01-09 09:28    ERROR    Connection failed: Access denied for user 'user'@'localhost' (using password: YES)
+2017-01-09 10:03    ERROR    Connection failed: Access denied for user 'user'@'localhost' (using password: YES)
+2017-01-09 10:03    ERROR    Connection failed: Access denied for user 'user'@'localhost' (using password: YES)
+2017-01-09 10:19    ERROR    Connection failed: Access denied for user 'user'@'localhost' (using password: YES)
+2017-01-09 10:19    ERROR    Connection failed: Access denied for user 'user'@'localhost' (using password: YES)
+2017-01-09 10:19    ERROR    Connection failed: Access denied for user 'user'@'localhost' (using password: YES)
+2017-01-09 10:19    ERROR    Connection failed: Access denied for user 'user'@'localhost' (using password: YES)
+2017-01-09 10:22    ERROR    Connection failed: Access denied for user 'user'@'localhost' (using password: YES)
+2017-01-09 10:22    ERROR    Connection failed: Access denied for user 'user'@'localhost' (using password: YES)
+2017-01-12 10:55    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'markus2@gmx.at' for key 'PRIMARY'
+2017-01-12 15:52    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'Karl@gmx.at' for key 'PRIMARY'
+2017-01-12 15:56    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'markus5@gmx.at' for key 'PRIMARY'

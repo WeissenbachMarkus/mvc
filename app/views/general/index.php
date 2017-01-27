@@ -11,21 +11,6 @@
         <?php $controller->cookieSytle2CSS(); ?>
 
         <title>Gamp Php</title>
-        <?php
-
-        function spruecheArray()
-        {
-            $spruch[0] = 'Wer früher stirbt, ist länger tod';
-            $spruch[1] = 'Das Leben ist kein Ponyhof';
-            $spruch[2] = 'Träume nicht dein Leben, lebe deine Träume';
-
-            foreach ($spruch as $value)
-            {
-                echo $value . "<br>";
-            }
-        }
-        ?>
-
 
         <script>
             function getCookie(cname) {
@@ -60,6 +45,7 @@
             }
 
         </script>
+
     </head>
     <body>
         <div class="header col-12 col-m-12">
@@ -70,14 +56,19 @@
         <div class="row">
             <div class="col-3 col-m-4 menu">
                 <ul>
-                    <div class = "dropdown">
-                        <li><a id = "user" href = "user">User</a></li>
-                        <div id = "userHidden">
+                    <div id="dropdownUser" class = "dropdown"
+                         >       <li><a href="user">User</a></li>
+                        <div id = "userHidden" class="hidden">
                             <li><a href ="register">hinzufuegen</a></li>
                             <li><a href ="bildhochladen">bildhochladen</a></li>
                         </div>
                     </div>
-                    <li><a href = "modul">Modul</a></li>
+                    <div id="dropdownModel" class="dropdown">
+                        <li><a href = "modul">Modul</a></li>
+                        <div id="modulHidden" class="hidden">
+                            <li><a href="modulAnlegen"> Modul Anlegen</a></li>
+                        </div>
+                    </div>
                     <li><a href = "message">Message</a></li>
                     <li><a href = "statistic">Statistic</a></li>
                 </ul>

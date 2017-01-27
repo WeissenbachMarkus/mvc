@@ -57,7 +57,7 @@ li:hover, a:hover {
     background-color: cadetblue;
 }
 
-#userHidden
+.hidden
 {
     display: none;
 }
@@ -66,13 +66,13 @@ li:hover, a:hover {
 {
     padding: 5px;
 }
-.dropdown:hover #userHidden{
-   
+#dropdownUser:hover #userHidden{  
     display: block;
-
 }
 
-//section
+#dropdownModel:hover #modulHidden{  
+    display: block;
+}
 
 .section form input{
     size: 50px;

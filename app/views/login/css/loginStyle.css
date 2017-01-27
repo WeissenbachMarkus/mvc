@@ -4,7 +4,7 @@ section
     width:50%;
     height:90%;
 
-  // border: solid 1px red;
+    // border: solid 1px red;
 }
 #fehler
 {
@@ -19,9 +19,9 @@ form{
     left:50%;
     top:50%;
     margin:-100px 0 0 -150px;
-   
-    
-   //border: solid 1px yellow;
+
+
+    //border: solid 1px yellow;
 }
 
 form input[type=submit]
@@ -32,12 +32,12 @@ form input[type=submit]
 body
 {
     position: relative;
-  height: 90%;
-  
- //border: solid 1px blue;
+    height: 90%;
+
+    //border: solid 1px blue;
 }
 
 html{
     height: 100%;
-   // border: solid 1px green;
+    // border: solid 1px green;
 }

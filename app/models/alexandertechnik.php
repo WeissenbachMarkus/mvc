@@ -11,7 +11,7 @@ class alexandertechnik extends Database
     protected function __construct()
     {
         parent::__construct();
-        $this->setDatabaseconnection('127.0.0.1', 'user', 'user', 'alexandertechnik');
+        $this->setDatabaseconnection('127.0.0.1', 'root', '', 'alexandertechnik');
     }
 
     /**
@@ -71,6 +71,11 @@ class alexandertechnik extends Database
     public function userListAllUsers()
     {
         return $this->generalSelectStatementWithCatchedException('user', array('u_icon','u_nickname','u_email'));             
+    }
+    
+    public function modulAnlegen()
+    {
+        
     }
 
 }

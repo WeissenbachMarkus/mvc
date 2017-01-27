@@ -39,8 +39,7 @@ class login extends Controller
                 $this->getLogger()->logThis('Loginversuch fehlgeschlagen von: ' . $email[0]['u_email'], 1);
             else
                 $this->getLogger()->logThis('Loginversuch fehlgeschlagen von: Unbekannt', 1);
-             
-            
+                        
             $this->setFehler('Benutzerdaten inkorrekt!');
             header('Location: http://localhost/mvc/public/login');
         }

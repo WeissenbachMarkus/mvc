@@ -32,9 +32,22 @@ class register extends Controller
         if ($database->registerRegistrieren($_POST['Nickname'], $_POST['Email'], $_POST['Passwort'], $_POST['Admin']))
         {
             $this->setValidData();
+
             header('Location: http://localhost/mvc/public/registrierungErfolgreich');
         } else
             header('Location: http://localhost/mvc/public/register');
+
+           
+     /*   foreach ($_SESSION as $key => $value)
+        {
+            if (is_array($value))
+                foreach ($value as $key => $inhalt)
+                {
+                    echo $inhalt . '<br>';
+                } else
+                echo $value.'<br>';
+        }
+        die();*/
     }
 
     private function informationProvided()

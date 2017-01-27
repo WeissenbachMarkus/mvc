@@ -26,8 +26,8 @@ class registrierungErfolgreich extends Controller
             }
         } else
             echo 'somethings wrong!';
-        // header('Location: http://localhost/mvc/public/home');
-        session_destroy();
+       
+        unset($_SESSION['dataRegister']);
     }
 
 }

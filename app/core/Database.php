@@ -332,7 +332,7 @@ abstract class Database
         } catch (Exception $ex)
         {
             
-           // $this->setFehler('Fehler bei der Authentifizierung!');
+            $this->setFehler('Fehler bei der Authentifizierung!');
             return false;
         }
     }

@@ -67,7 +67,7 @@ abstract class Controller
 
     protected function setCookieForStyle()
     {
-        $this->startSession();
+        /*$this->startSession();
 
         if (isset($_GET['stil']) && $_GET['stil'] == 2)
         {
@@ -77,7 +77,7 @@ abstract class Controller
         {
             $_COOKIE['stil'] = 1;
             setcookie('stil', '1', time() + 3600);
-        }
+        }*/
     }
 
     protected function cookieSytle2CSS()
