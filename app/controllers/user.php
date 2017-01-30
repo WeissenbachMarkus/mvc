@@ -29,8 +29,7 @@ class user extends Controller
                 echo '</tr>';
             }
             echo '</table>';
-        } else
-            echo 'nei!';
+        } 
     }
 
 }

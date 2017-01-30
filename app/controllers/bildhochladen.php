@@ -21,7 +21,7 @@ class bildhochladen extends Controller
 
     public function verarbeitung()
     {
-        $target_dir = "../app/core/pictures/userIcon";
+        $target_dir = "../app/models/pictures/userIcons/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -37,33 +37,33 @@ class bildhochladen extends Controller
                 $uploadOk = 1;
             } else
             {
-                echo "File is not an image.";
+                $this->setFehler('File is not an image.');
                 $uploadOk = 0;
             }
         }
         // Check if file already exists
         if (file_exists($target_file))
         {
-            echo "Sorry, file already exists.";
+           $this->setFehler('Sorry, file already exists.');
             $uploadOk = 0;
         }
         // Check file size
         print_r($_FILES["fileToUpload"]);
         if ($_FILES["fileToUpload"]["size"] > 1000000)
         {
-            echo "Sorry, your file is too large.";
+            $this->setFehler('Sorry, your file is too large.');
             $uploadOk = 0;
         }
         // Allow certain file formats
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif")
         {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+           $this->setFehler('Sorry, only JPG, JPEG, PNG & GIF files are allowed.');
             $uploadOk = 0;
         }
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0)
         {
-            echo "Sorry, your file was not uploaded.";
+            $this->setFehler('Sorry, your file was not uploaded.');
             // if everything is ok, try to upload file
         } else
         {
@@ -73,7 +73,7 @@ class bildhochladen extends Controller
                 echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded to: " . $target_dir;
             } else
             {
-                echo "Sorry, there was an error uploading your file.";
+                $this->setFehler('Sorry, there was an error uploading your file.');
             }
         }
     }
@@ -84,8 +84,7 @@ class bildhochladen extends Controller
      */
     private function linkHochladen($bildverzeichnis)
     {
-        require_once '../app/models/DatenbankGamp.php';
-        $datenbank = DatenbankGamp::modulObjekthinzufuegen($bildverzeichnis);
+        header('Location: http://localhost/mvc/public/bildHochgeladen');
     }
 
 }

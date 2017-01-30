@@ -11,7 +11,7 @@
         <section>
 
             <?php $controller->sectionInhalt(); ?>
-         <!--   <p id="fehler"><?php //$controller->fehler(); ?></p> -->
+        
 
         </section>
     </body>

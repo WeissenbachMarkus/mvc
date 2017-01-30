@@ -67,25 +67,28 @@ abstract class Controller
 
     protected function setCookieForStyle()
     {
-        /*$this->startSession();
+        if (isset($_SESSION['stil']))
+        {
+            $this->startSession();
+            $_COOKIE['stil'] = $_SESSION['stil'];
+            setcookie('stil', $_SESSION['stil'], time() + 3600);
+            unset($_SESSION['stil']);
+        }
+    }
 
-        if (isset($_GET['stil']) && $_GET['stil'] == 2)
-        {
-            $_COOKIE['stil'] = 2;
-            setcookie('stil', '2', time() + 3600);
-        } else if (isset($_GET['stil']) && $_GET['stil'] == 1)
-        {
-            $_COOKIE['stil'] = 1;
-            setcookie('stil', '1', time() + 3600);
-        }*/
+    public function setStyle($stil)
+    {
+        $this->startSession();
+        $_SESSION['stil']=$stil;
+        header('Location: http://localhost/mvc/public/'.get_class($this));
     }
 
     protected function cookieSytle2CSS()
     {
         if (isset($_COOKIE['stil']) && $_COOKIE['stil'] == 2)
         {
-            echo '<link type="text/css" rel="stylesheet" href="/mvc/public/style2.css">';
-        }
+            echo '<link type="text/css" rel="stylesheet" href="../app/views/general/css/style2.css">';
+        } 
     }
 
     protected function loginHeader()
@@ -95,7 +98,7 @@ abstract class Controller
 
     protected function navigation()
     {
-       
+        
     }
 
     /**
@@ -134,5 +137,10 @@ abstract class Controller
         unset($_SESSION['user']);
         header('Location: http://localhost/mvc/public/login');
     }
-
+    
+    protected function date()
+    {
+        $datum = date("Y");
+                echo '&copy;Markus Weissenbach ' . $datum;
+    }
 }

@@ -7,16 +7,16 @@
  */
 
 /**
- * Description of modul
+ * Description of bildHochgeladen
  *
- * @author weiss
+ * @author markus
  */
-class modul extends Controller
+class bildHochgeladen extends Controller
 {
-    
     protected function sectionInhalt()
     {
-        echo 'Module';
+        echo 'Bild wurde Erfolgreich hochgeladen!';
     }
 
+//put your code here
 }

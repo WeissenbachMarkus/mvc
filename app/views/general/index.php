@@ -1,50 +1,16 @@
-<?php $controller->setCookieForStyle(); ?>
+<?php $controller-> setCookieForStyle(); ?>
 <!DOCTYPE html>
 <html>
     <head>
-
-
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link type="text/css" rel="stylesheet" href="/mvc/public/css/responsive.css">
-        <link type="text/css" rel="stylesheet" href="/mvc/public/css/style.css">
+        <link type="text/css" rel="stylesheet" href="../app/views/general/css/responsive.css">
+        <link type="text/css" rel="stylesheet" href="../app/views/general/css/style.css">
 
         <?php $controller->cookieSytle2CSS(); ?>
 
         <title>Gamp Php</title>
 
-        <script>
-            function getCookie(cname) {
-                var name = cname + "=";
-                var ca = document.cookie.split(';');
-                for (var i = 0; i < ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0) == ' ') {
-                        c = c.substring(1);
-                    }
-                    if (c.indexOf(name) == 0) {
-                        return c.substring(name.length, c.length);
-                    }
-                }
-                return "";
-            }
-
-
-            var d = new Date();
-            d.setTime(d.getTime() + (60));
-            var expires = "expires=" + d.toUTCString();
-            document.cookie = "message=1;" + expires + ";path=/";
-
-
-            if (getCookie('message') === '')
-            {
-                alert("Diese Seite speichert Cookies!");
-                var d = new Date();
-                d.setTime(d.getTime() + (60));
-                var expires = "expires=" + d.toUTCString();
-                document.cookie = "message=1;" + expires + ";path=/";
-            }
-
-        </script>
+        <script src="../app/views/general/cookie.js"></script>
 
     </head>
     <body>
@@ -79,17 +45,14 @@
                 <?php $controller->sectionInhalt(); ?>
                 <br>
                 <?php $controller->fehler(); ?>
+              
             </div>
         </div>
 
         <div class="footer col-m-12">
-            <p><?php
-                $datum = date("Y");
-                echo '&copy;Markus Weissenbach ' . $datum;
-                ?>
-            </p>
-            <a href="?stil=2"> Stil2</a>
-            <a href="?stil=1"> Stil </a>
+            <p><?php $controller->date(); ?> </p>
+            <a href="<?=get_class($this)?>/setStyle/2"> Stil2</a>
+            <a href="<?=get_class($this)?>/setStyle/1"> Stil </a>
         </div>
     </body>
 </html>

@@ -37,6 +37,7 @@ class App
             }
 
             $this->params = $url ? array_values($url) : [];
+            
         } elseif (!$this->urlIstLoginUrl($this->urlToString($url)))
             header('Location: http://localhost/mvc/public/login');
         else
