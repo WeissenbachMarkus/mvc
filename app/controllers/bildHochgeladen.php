@@ -18,5 +18,4 @@ class bildHochgeladen extends Controller
         echo 'Bild wurde Erfolgreich hochgeladen!';
     }
 
-//put your code here
 }

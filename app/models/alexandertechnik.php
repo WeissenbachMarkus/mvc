@@ -21,7 +21,7 @@ class alexandertechnik extends Database
      * @param type $u_password
      * @return boolean true , false
      */
-    public function registerRegistrieren($u_nickname, $u_email, $u_password,$admin)
+    public function registerRegistrieren($u_nickname, $u_email, $u_password, $admin)
     {
 
         $columnnames = array('u_nickname', 'u_email', 'u_password','u_admin');
@@ -73,9 +73,9 @@ class alexandertechnik extends Database
         return $this->generalSelectStatementWithCatchedException('user', array('u_icon','u_nickname','u_email'));             
     }
     
-    public function modulAnlegen()
+    public function statisticGetUser($nickname)
     {
-        
+        return $this->generalSelectStatementWithCatchedException('user', '*', 'where u_nickname= ?', $nickname);
     }
 
 }

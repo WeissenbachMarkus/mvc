@@ -79,8 +79,8 @@ abstract class Controller
     public function setStyle($stil)
     {
         $this->startSession();
-        $_SESSION['stil']=$stil;
-        header('Location: http://localhost/mvc/public/'.get_class($this));
+        $_SESSION['stil'] = $stil;
+        header('Location: http://localhost/mvc/public/' . get_class($this));
     }
 
     protected function cookieSytle2CSS()
@@ -88,7 +88,7 @@ abstract class Controller
         if (isset($_COOKIE['stil']) && $_COOKIE['stil'] == 2)
         {
             echo '<link type="text/css" rel="stylesheet" href="../app/views/general/css/style2.css">';
-        } 
+        }
     }
 
     protected function loginHeader()
@@ -101,13 +101,27 @@ abstract class Controller
         
     }
 
+    protected function script()
+    {
+        echo '<script src="../app/views/general/cookie.js"></script>';
+    }
+
+    /**
+     * bindet scripts ein
+     * @param type $name: Name des scripts im erstellten 'script' Ordner
+     */
+    protected function setScript($name)
+    {
+        echo '<script src="../app/views/' . get_class($this) . '/script/' . $name . '.js"></script>';
+    }
+
     /**
      * Inhalt der Section muss überschrieben werden
      */
     protected abstract function sectionInhalt();
 
     /**
-     * Lierfert Datenbankinstanz
+     * Liefert Datenbankinstanz
      * @param type $model Name der Datenbank Klasse angeben
      * @return type Instanz der Datenbank
      */
@@ -119,11 +133,12 @@ abstract class Controller
 
     /**
      * Wird verwendet um Templates zu laden
-     * @param type $controllerChild muss null sein wenn kein Objekt erstellt werden soll, sonst Objektname uebergeben oder Referenz
+     * @param type $controllerChild muss null sein wenn kein Objekt 
+     * erstellt werden soll, sonst Objektname uebergeben oder Referenz
      * @param type $view der Pfad zum Template ab dem Ordner "views"
      * @param type $data daten die übergeben werden sollen.
      */
-    public function view($controllerChild, $view = 'general/index', $data = [])
+    protected function view($controllerChild, $view = 'general/index', $data = [])
     {
         if ($controllerChild != null)
             $controller = new $controllerChild;
@@ -137,10 +152,32 @@ abstract class Controller
         unset($_SESSION['user']);
         header('Location: http://localhost/mvc/public/login');
     }
-    
+
     protected function date()
     {
         $datum = date("Y");
-                echo '&copy;Markus Weissenbach ' . $datum;
+        echo '&copy;Markus Weissenbach ' . $datum;
     }
+
+    protected function css()
+    {
+        echo '<link type="text/css" rel="stylesheet" href="../app/views/general/css/responsive.css">
+        <link type="text/css" rel="stylesheet" href="../app/views/general/css/style.css">';
+    }
+
+    protected function setCss($pfad = '/css/style.css')
+    {
+        echo '<link type="text/css" rel="stylesheet" href="../app/views/' . get_class($this) . $pfad . '">';
+    }
+
+    /**
+     * Wird verwendet wenn Daten übergeben werden sollen
+     * @param type $data
+     */
+    protected function setData($data)
+    {
+        $this->startSession();
+        $_SESSION['data'] = $data;
+    }
+
 }

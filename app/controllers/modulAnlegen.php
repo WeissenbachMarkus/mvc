@@ -16,7 +16,19 @@ class modulAnlegen extends Controller
 
     protected function sectionInhalt()
     {
-        echo 'Module Anlegen!';
+        $this->view(null, 'modulAnlegen/modulAnlegenFormular', $data);
+    }
+
+    protected function script()
+    {
+        parent::script();
+        $this->setScript('name');
+    }
+
+    protected function css()
+    {
+        parent::css();
+         $this->setCss();
     }
 
 }
