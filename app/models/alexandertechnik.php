@@ -77,5 +77,10 @@ class alexandertechnik extends Database
     {
         return $this->generalSelectStatementWithCatchedException('user', '*', 'where u_nickname= ?', $nickname);
     }
+    
+    public function modulAnlegenGetNames($name)
+    {
+        return $this->generalSelectStatementWithCatchedException('modul', 'm_name','where m_name=?',$name);
+    }
 
 }

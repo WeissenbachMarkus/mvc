@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of moduleAnlegen
  *
@@ -16,19 +10,32 @@ class modulAnlegen extends Controller
 
     protected function sectionInhalt()
     {
-        $this->view(null, 'modulAnlegen/modulAnlegenFormular', $data);
+        $this->view(null, 'modulAnlegen/modulAnlegenFormular');
     }
 
     protected function script()
     {
         parent::script();
-        $this->setScript('name');
+        $this->setScript('dragNdrop');
     }
 
     protected function css()
     {
         parent::css();
-         $this->setCss();
+        $this->setCss();
+    }
+
+    public function sichereInhalt()
+    {
+        $this->setData($_POST['modulIDs']);
+    }
+
+    public function anfrage($name)
+    {
+        if ($result = $this->getModel('alexandertechnik')->modulAnlegenGetNames($name))
+            echo false;
+        else
+            echo true;
     }
 
 }

@@ -14,6 +14,9 @@ class user extends Controller
         $this->listAllUsers();
     }
 
+    /*
+     * Ausgabe der Users
+     */
     private function listAllUsers()
     {
         if ($userData = $this->getModel('Alexandertechnik')->userListAllUsers())

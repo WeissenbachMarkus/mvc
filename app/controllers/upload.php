@@ -11,7 +11,7 @@
  *
  * @author markus
  */
-class bildhochladen extends Controller
+class upload extends Controller
 {
 
     public function sectionInhalt()
@@ -21,15 +21,22 @@ class bildhochladen extends Controller
 
     public function verarbeitung($target)
     {
-        $target_dir = "../app/models/pictures/".$target."/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
+        $target_dir = "../app/models/pictures/" . $target . "/";
+
+        if (!file_exists($target_dir))
+        {
+            mkdir($target_dir);
+        }
+
+        $target_file = $target_dir . basename($_FILES["upload"]["name"]);
         $uploadOk = 1;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
         // Check if image file is a actual image or fake image
         if (isset($_POST["submit"]))
         {
-            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            $check = getimagesize($_FILES["upload"]["tmp_name"]);
 
             if ($check !== false)
             {
@@ -41,41 +48,41 @@ class bildhochladen extends Controller
                 $uploadOk = 0;
             }
         }
-        
+
         // Check if file already exists
         if (file_exists($target_file))
         {
-           $this->setFehler('Sorry, file already exists.');
+            $this->setFehler('Sorry, file already exists.');
             $uploadOk = 0;
         }
-        
+
         // Check file size
-        print_r($_FILES["fileToUpload"]);
-        if ($_FILES["fileToUpload"]["size"] > 1000000)
+        print_r($_FILES["upload"]);
+        if ($_FILES["upload"]["size"] > 10000000)
         {
             $this->setFehler('Sorry, your file is too large.');
             $uploadOk = 0;
         }
-        
+
         // Allow certain file formats
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif")
         {
-           $this->setFehler('Sorry, only JPG, JPEG, PNG & GIF files are allowed.');
+            $this->setFehler('Sorry, only JPG, JPEG, PNG & GIF files are allowed.');
             $uploadOk = 0;
         }
-        
+
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0)
         {
             $this->setFehler('Sorry, your file was not uploaded.');
-            header('Location: http://localhost/mvc/public/bildhochladen');
+            header('Location: http://localhost/mvc/public/modulAnlegen');
             // if everything is ok, try to upload file
         } else
         {
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file))
+            if (move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file))
             {
                 $this->linkHochladen($target_file);
-                echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded to: " . $target_dir;
+                echo "The file " . basename($_FILES["upload"]["name"]) . " has been uploaded to: " . $target_dir;
             } else
             {
                 $this->setFehler('Sorry, there was an error uploading your file.');
@@ -89,7 +96,17 @@ class bildhochladen extends Controller
      */
     private function linkHochladen($bildverzeichnis)
     {
-        header('Location: http://localhost/mvc/public/bildHochgeladen');
+        header('Location: http://localhost/mvc/public/modulAnlegen');
     }
 
+    public function test()
+    {
+       /* foreach ($_FILES['upload'] as $key => $value)
+        {
+            echo 'KEY: '.$key.' VALUE: '.$value.'\n';
+        }*/
+        
+        echo $_FILES['upload']['tmp_name'];
+        
+    }
 }

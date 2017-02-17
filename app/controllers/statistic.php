@@ -27,7 +27,5 @@ class statistic extends Controller
         $this->setData($result[0]);
         header('Location: http://localhost/mvc/public/statistic');
     }
-    
-
 
 }

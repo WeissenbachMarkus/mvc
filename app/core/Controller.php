@@ -176,8 +176,37 @@ abstract class Controller
      */
     protected function setData($data)
     {
+
+        function filterArray($data)
+        {
+            foreach ($data as $key => $value)
+            {
+                $result[$key] = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+            }
+
+            return $result;
+        }
+
         $this->startSession();
+
+        if (is_array($data))
+            $data = filterArray($data);
+        else
+            $data = filter_var($data, FILTER_SANITIZE_SPECIAL_CHARS);
+
         $_SESSION['data'] = $data;
+    }
+
+    protected function getData()
+    {
+        $this->startSession();
+        $result = null;
+        if (!empty($_SESSION['data']))
+        {
+            $result = $_SESSION['data'];
+            unset($_SESSION['data']);
+        }
+        return $result;
     }
 
 }

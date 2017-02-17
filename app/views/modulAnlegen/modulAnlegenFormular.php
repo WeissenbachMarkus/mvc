@@ -3,21 +3,23 @@
         <legend> Modulanlegen </legend>
         <fieldset>
             <legend> Name </legend>
-            <input type = "text" name = "name" placeholder = "Name">
-            <fieldset>
+            <input id="titel" type = "text" name = "titel" placeholder = "Name" onkeyup="bereitsVorhanden(this.value,this)">
+            <fieldset id="inhaltFieldset">
                 <legend>Inhalt</legend>
-                <div id="inhaltModul" ondrop="dragNdrop.drop(this)" ondragover="dragNdrop.allowDrop(this)">
-                </div>
+                <ul id="inhaltModul" 
+                    ondrop="dragNdrop.drop(event, this)" ondragover="dragNdrop.allowDrop(event)">
+                </ul>
             </fieldset>
         </fieldset>  
+        <input id="fertig" type="submit" value="Fertig">
     </fieldset>
+
 </form>
 
-<div class="col-3 Modulmenu">
-    <ul>
-        <li id="text" draggable="true"  ondragstart="dragNdrop.drag(this)">Text</li>
-        <li id="audio" draggable="true" ondragstart="drag(this)">Audio</li>
-        <li id="video" draggable="true" ondragstart="drag(this)">Video</li>
-         <li id="bild" draggable="true" ondragstart="drag(this)">Bild</li>
-    </ul>
-</div>
+<ul id="modulMenu" class=" col-3">
+    <li id="text" draggable="true" ondragstart="dragNdrop.drag(event)">Text</li>
+    <li id="audio" draggable="true" ondragstart="dragNdrop.drag(event)">Audio</li>
+    <li id="video" draggable="true" ondragstart="dragNdrop.drag(event)">Video</li>
+    <li id="image" draggable="true" ondragstart="dragNdrop.drag(event)">Bild</li>
+    <li id="vorhandeneInhalte" draggable="true" ondragstart="dragNdrop.drag(event)">vorhandene Inhalte</li>
+</ul>

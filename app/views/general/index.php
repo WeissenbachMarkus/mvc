@@ -3,13 +3,13 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
         <?php $this->css(); ?>
         <?php $controller->cookieSytle2CSS(); ?>
 
         <title>Gamp Php</title>
 
-        <?php $this->script();?>
+        <?php $this->script(); ?>
 
     </head>
     <body>
@@ -38,10 +38,11 @@
                 <?php $controller->navigation(); ?>
             </div>
 
-            <div id="section" class="col-8 col-m-8">
+            <div id="section" class="col-9 col-m-9">
                 <?php $controller->sectionInhalt(); ?>
                 <br>
-                <?php $controller->fehler(); ?>    
+
+                <div class="col-12"> <?php $controller->fehler(); ?>  </div>
             </div>
         </div>
 

@@ -2,16 +2,15 @@ form{
     margin-left: 0;
 }
 
-.Modulmenu ul{
+#modulMenu, #inhaltModul{
 
     list-style: none;
-
-
     padding: 0;
 }
 
-.Modulmenu li
+#modulMenu li, #inhaltModul li
 {
+
     width: 100%;
     border: 1px solid black;      
     margin:5px;
@@ -21,18 +20,35 @@ form{
     text-align: center;
 
 }
-.Modulmenu input{
+#modulMenu input{
     padding: 5px;
 
     border: 1px solid red;
 }
 fieldset
 {
-
     margin: 5px;
 }
+
 #inhaltModul
 {
+    margin: 0;
     padding:10px;
-    border: 1px solid red;
+
 }
+
+#inhaltFieldset
+{
+    margin: 10px;
+    padding: 0;
+}
+
+#fertig
+{
+    float: right;
+}
+
+.inhalt{
+    margin: 3px;
+}
+
