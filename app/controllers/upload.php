@@ -99,14 +99,28 @@ class upload extends Controller
         header('Location: http://localhost/mvc/public/modulAnlegen');
     }
 
-    public function test()
+    public function test($target)
     {
-       /* foreach ($_FILES['upload'] as $key => $value)
+
+
+        $target_dir = "../app/models/pictures/" . $target . "/";
+
+        if (!file_exists($target_dir))
         {
-            echo 'KEY: '.$key.' VALUE: '.$value.'\n';
-        }*/
-        
-        echo $_FILES['upload']['tmp_name'];
-        
+            mkdir($target_dir);
+        }
+
+        $target_file = $target_dir . basename($_FILES["upload"]["name"]);
+
+        if (move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file))
+            echo $target_file;
+        else
+        {
+            foreach ($_FILES['upload'] as $key => $value)
+            {
+                echo 'Key: ' . $key . ' value: ' . $value;
+            }
+        }
     }
+
 }

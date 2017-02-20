@@ -1,8 +1,10 @@
-form{
+form
+{
     margin-left: 0;
 }
 
-#modulMenu, #inhaltModul{
+#modulMenu, #inhaltModul
+{
 
     list-style: none;
     padding: 0;

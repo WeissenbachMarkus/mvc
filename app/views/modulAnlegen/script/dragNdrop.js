@@ -51,14 +51,21 @@ var dragNdrop =
 
                 var children = inhaltModul.childNodes;
 
-                var childrenID = [];
-
+                var childrenIDundSRC = [];
                 children.forEach(function (item, index) {
                     if (index > 0)
-                        childrenID.push(item.id);
+                    {
+                        childrenIDundSRC.push(new RowKeySrc(item.id, item.src == undefined ? null : item.src));
+                    }
                 });
 
-                sessionStorage.setItem('inhaltModul', JSON.stringify(childrenID));
+                sessionStorage.setItem('inhaltModul', JSON.stringify(childrenIDundSRC));
+
+                function RowKeySrc(id, src)
+                {
+                    this.id = id;
+                    this.src = src;
+                }
 
             }
             ,
@@ -91,38 +98,37 @@ var dragNdrop =
                 form.submit();
 
             }
-
             ,
             inhaltModulFuellen: function () {
 
                 var inhaltModul = document.getElementById('inhaltModul');
-                var inhaltModulIDs = JSON.parse(sessionStorage.getItem('inhaltModul'))
-                if (inhaltModulIDs != null)
+                var inhaltModulIDsundSRCs = JSON.parse(sessionStorage.getItem('inhaltModul'))
+                if (inhaltModulIDsundSRCs != null)
                 {
-                    inhaltModulIDs.forEach(function (item) {
-                        inhaltModul.appendChild(dragNdrop.inhaltModulElementErstellen(filterID(item), item));
+                    inhaltModulIDsundSRCs.forEach(function (item) {
+                        inhaltModul.appendChild(dragNdrop.inhaltModulElementErstellen(dragNdrop.filterID(item.id), item.src));
                     });
                 }
 
-                function filterID(id)
-                {
-                    var inhalte = ['text', 'audio', 'video', 'image', 'vorhandeneInhalte'];
-                    var inhaltTyp;
 
-                    inhalte.forEach(function (item) {
-                        if (id.includes(item))
-                        {
-                            inhaltTyp = item;
-                        }
-                    });
 
-                    return inhaltTyp;
-                }
             },
-            inhaltModulElementErstellen: function (data, id)
+            filterID: function (id)
             {
-                id = id || null;
+                var inhalte = ['text', 'audio', 'video', 'image', 'vorhandeneInhalte', 'imgTAG'];
+                var inhaltTyp;
 
+                inhalte.forEach(function (item) {
+                    if (id.includes(item))
+                    {
+                        inhaltTyp = item;
+                    }
+                });
+
+                return inhaltTyp;
+            },
+            inhaltModulElementErstellen: function (data, src)
+            {
                 var element;
 
                 switch (data)
@@ -163,35 +169,59 @@ var dragNdrop =
                             var parent = event.target.parentElement;
                             var children = parent.childNodes;
                             var file = children[0].files;
+                            var inhaltsTyp = dragNdrop.filterID(parent.id);
 
+                            console.log(inhaltsTyp);
+                            console.log(file);
                             if (file.length > 0)
                             {
                                 parent.innerHTML = 'Uploading...';
                                 (function ()
                                 {
-                                    console.log('in here');
+
                                     var formData = new FormData();
                                     formData.append('upload', file[0], file[0].name);
                                     var xhr = new XMLHttpRequest();
-                                    xhr.open('POST', 'upload/test', true);
+                                    xhr.open('POST', 'upload/test/' + inhaltsTyp, true);
                                     xhr.onload = function () {
                                         if (xhr.status === 200) {
-                                            // File uploaded.
-                                            parent.innerHTML = 'Upload finished';
+
+                                            parent.innerHTML = '';
+
+                                            // responseText ist der Pfad zum Bild
                                             console.log(this.responseText);
-                                            (function(){
-                                                
-                                                
-                                                
-                                            })();
+
+                                            var element = dragNdrop.inhaltModulElementErstellen(idAnpassen(parent.id), this.responseText);
+                                            parent.replaceWith(element);
+                                            dragNdrop.saveAllNodes();
+
                                         } else {
                                             alert('An error occurred!');
                                         }
                                     };
 
                                     xhr.send(formData);
-                                })();
 
+                                    function idAnpassen(id)
+                                    {
+console.log('here');
+                                        id = dragNdrop.filterID(id);
+                                        switch (id)
+                                        {
+                                            case'image':
+                                                return 'imgTAG';
+                                                break;
+                                            case'audio':
+                                                return 'audioTAG';
+                                                break;
+                                            case'video':
+                                                return 'videoTAG';
+                                                break;
+
+                                        }
+                                    }
+                                }
+                                )();
                             } else
                             {
 
@@ -202,11 +232,6 @@ var dragNdrop =
                                 }, 500);
                             }
 
-
-
-                            /*
-                             var inhaltModul = JSON.parse(sessionStorage.getItem('inhaltModul'));
-                             dragNdrop.sendPOST('modulAnlegen/sichereInhalt', inhaltModul, 'modulIDs');*/
                         });
 
                         form.appendChild(input);
@@ -214,34 +239,74 @@ var dragNdrop =
                         element = form;
                         break;
 
+                    case 'imgTAG':
+
+                        var element = document.createElement('img');
+                        element.src = src;
+                        element.id = data + this.elementNum;
+                        element.style.width = '100%';
+                        break;
+
+                    case'audioTAG':
+                       
+                        var element = document.createElement('audio');
+                        element.controls = 'true';
+                        element.style.width = '100%';
+                        element.id = data + this.elementNum;
+                        var source = document.createElement('source');
+                        source.src = src;
+                        element.appendChild(source);
+                        break;
+
+                    case'videoTAG':
+                        
+                         console.log('inhere');
+                        var element = document.createElement('video');
+                        element.controls = 'true';
+                       
+                        element.id = data + this.elementNum;
+                        var source = document.createElement('source');
+                        source.src = src;
+                        element.appendChild(source);
+                        
+                        break;
                     case 'vorhandeneInhalte':
 //todo
                         break;
+
                 }
 
                 this.elementNum++;
                 element.className = 'inhalt';
-                element.draggable = 'true';
 
-                element.addEventListener('dragstart', function (event)
-                {
-                    dragNdrop.drag(event);
-                });
+                return makeElementDragAble(element);
 
-                element.addEventListener('dragend', function (event)
+                function makeElementDragAble(element)
                 {
-                    if (event.dataTransfer.dropEffect == 'none')
+                    element.draggable = 'true';
+
+                    element.addEventListener('dragstart', function (event)
                     {
-                        document.getElementById(event.target.id).remove();
-                    }
-                    dragNdrop.saveAllNodes();
-                });
+                        dragNdrop.drag(event);
+                    });
 
-                return element;
+                    element.addEventListener('dragend', function (event)
+                    {
+                        if (event.dataTransfer.dropEffect == 'none')
+                        {
+                            event.target.remove();
+                        }
+                        dragNdrop.saveAllNodes();
+                    });
 
+                    return element;
+                }
+                
+                //function 
                 function capitalizeFirstLetter(string) {
                     return string.charAt(0).toUpperCase() + string.slice(1);
                 }
+
             }
 
         };
@@ -271,4 +336,3 @@ function bereitsVorhanden(str, element) {
 document.addEventListener('DOMContentLoaded', function () {
     dragNdrop.inhaltModulFuellen();
 });
-
