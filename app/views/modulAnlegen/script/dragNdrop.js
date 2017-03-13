@@ -1,6 +1,7 @@
 var dragNdrop =
         {
             elementNum: 0,
+            idsFromTextAreas: [],
             allowDrop:
                     function (ev) {
                         ev.preventDefault();
@@ -13,14 +14,12 @@ var dragNdrop =
 
                 ev.preventDefault();
                 var data = ev.dataTransfer.getData("source");
-
                 if (checkMenuItem(data))
                 {
                     var element = this.inhaltModulElementErstellen(data, null);
                 }
                 else
                     var element = document.getElementById(data);
-
                 try
                 {
                     parent.appendChild(element);
@@ -31,7 +30,6 @@ var dragNdrop =
                 }
 
                 dragNdrop.saveAllNodes();
-
                 function checkMenuItem(data)
                 {
                     return data == 'text' ||
@@ -46,21 +44,33 @@ var dragNdrop =
             saveAllNodes: function () {
 
                 sessionStorage.clear();
-
                 var inhaltModul = document.getElementById('inhaltModul');
-
                 var children = inhaltModul.childNodes;
-
                 var childrenIDundSRC = [];
+
                 children.forEach(function (item, index) {
                     if (index > 0)
                     {
                         childrenIDundSRC.push(new RowKeySrc(item.id, item.src == undefined ? null : item.src));
                     }
                 });
-
                 sessionStorage.setItem('inhaltModul', JSON.stringify(childrenIDundSRC));
+                if (this.idsFromTextAreas.length > 0)
+                {
+                    console.log('here');
+                    var dataFromTextAreas = [];
+                    this.idsFromTextAreas.forEach(function (id)
+                    {
+                        console.log(CKEDITOR.instances[id].getData());
+                        dataFromTextAreas.push(CKEDITOR.instances[id].getData());
+                    });
 
+                    this.idsFromTextAreas = [];
+                }
+
+                sessionStorage.setItem('inhaltTextArea', JSON.stringify(dataFromTextAreas));
+                console.log(sessionStorage['inhaltTextArea']);
+           
                 function RowKeySrc(id, src)
                 {
                     this.id = id;
@@ -81,22 +91,18 @@ var dragNdrop =
                 var form = document.createElement("form");
                 form.setAttribute("method", 'post');
                 form.setAttribute("action", url);
-
                 for (var key in params) {
                     if (params.hasOwnProperty(key)) {
                         var hiddenField = document.createElement("input");
                         hiddenField.setAttribute("type", "hidden");
                         hiddenField.setAttribute("name", name + '[' + key + ']');
                         hiddenField.setAttribute("value", params[key]);
-
                         form.appendChild(hiddenField);
                     }
                 }
 
                 document.body.appendChild(form);
-
                 form.submit();
-
             }
             ,
             inhaltModulFuellen: function () {
@@ -110,36 +116,48 @@ var dragNdrop =
                     });
                 }
 
-
-
             },
             filterID: function (id)
             {
                 var inhalte = ['text', 'audio', 'video', 'image', 'vorhandeneInhalte', 'imgTAG'];
                 var inhaltTyp;
-
                 inhalte.forEach(function (item) {
                     if (id.includes(item))
                     {
                         inhaltTyp = item;
                     }
                 });
-
                 return inhaltTyp;
             },
             inhaltModulElementErstellen: function (data, src)
             {
-                var element;
-
+                var element = null;
                 switch (data)
                 {
                     case 'text':
-                        element = document.createElement('textarea');
+
+                        element = document.createElement('div');
                         element.id = 'textarea' + this.elementNum;
-                        element.style.width = '100%';
+
+                        var textarea = document.createElement('textarea');
+                        textarea.style.width = '100%';
+                        textarea.id = 'ta' + this.elementNum;
+
+ var inhaltTextArea = JSON.parse(sessionStorage.getItem('inahltTextArea'));
+ console.log(inhaltTextArea);
+                        if (inhaltTextArea!=null)
+                        {                
+                            textarea.innerHTML = inhaltTextArea[this.idsFromTextAreas.length];
+                        }
+
+                        var ckeditor = document.createElement('script');
+                        ckeditor.innerHTML = ' CKEDITOR.replace(' + textarea.id + ');';
+
+                        this.idsFromTextAreas.push(textarea.id);
+                        element.appendChild(textarea);
+                        element.appendChild(ckeditor);
 
                         break;
-
                     case 'audio':
 
                     case 'video':
@@ -151,26 +169,21 @@ var dragNdrop =
                         form.action = 'upload/verarbeitung/' + data;
                         form.method = 'post';
                         form.enctype = 'multipart/form-data';
-
                         var input = document.createElement('input');
                         input.type = 'file';
                         input.name = 'upload';
                         input.accept = data + '/*';
-
                         form.appendChild(input);
-
                         var input = document.createElement('input');
                         input.type = 'submit';
                         input.value = capitalizeFirstLetter(data) + ' hochladen';
                         input.addEventListener('click', function (event)
                         {
                             event.preventDefault();
-
                             var parent = event.target.parentElement;
                             var children = parent.childNodes;
                             var file = children[0].files;
                             var inhaltsTyp = dragNdrop.filterID(parent.id);
-
                             console.log(inhaltsTyp);
                             console.log(file);
                             if (file.length > 0)
@@ -187,24 +200,19 @@ var dragNdrop =
                                         if (xhr.status === 200) {
 
                                             parent.innerHTML = '';
-
                                             // responseText ist der Pfad zum Bild
                                             console.log(this.responseText);
-
                                             var element = dragNdrop.inhaltModulElementErstellen(idAnpassen(parent.id), this.responseText);
                                             parent.replaceWith(element);
                                             dragNdrop.saveAllNodes();
-
                                         } else {
                                             alert('An error occurred!');
                                         }
                                     };
-
                                     xhr.send(formData);
-
                                     function idAnpassen(id)
                                     {
-console.log('here');
+                                        console.log('here');
                                         id = dragNdrop.filterID(id);
                                         switch (id)
                                         {
@@ -217,7 +225,6 @@ console.log('here');
                                             case'video':
                                                 return 'videoTAG';
                                                 break;
-
                                         }
                                     }
                                 }
@@ -233,12 +240,9 @@ console.log('here');
                             }
 
                         });
-
                         form.appendChild(input);
-
                         element = form;
                         break;
-
                     case 'imgTAG':
 
                         var element = document.createElement('img');
@@ -246,9 +250,8 @@ console.log('here');
                         element.id = data + this.elementNum;
                         element.style.width = '100%';
                         break;
-
                     case'audioTAG':
-                       
+
                         var element = document.createElement('audio');
                         element.controls = 'true';
                         element.style.width = '100%';
@@ -257,23 +260,19 @@ console.log('here');
                         source.src = src;
                         element.appendChild(source);
                         break;
-
                     case'videoTAG':
-                        
-                         console.log('inhere');
+
+                        console.log('inhere');
                         var element = document.createElement('video');
                         element.controls = 'true';
-                       
                         element.id = data + this.elementNum;
                         var source = document.createElement('source');
                         source.src = src;
                         element.appendChild(source);
-                        
                         break;
                     case 'vorhandeneInhalte':
 //todo
                         break;
-
                 }
 
                 this.elementNum++;
@@ -284,12 +283,10 @@ console.log('here');
                 function makeElementDragAble(element)
                 {
                     element.draggable = 'true';
-
                     element.addEventListener('dragstart', function (event)
                     {
                         dragNdrop.drag(event);
                     });
-
                     element.addEventListener('dragend', function (event)
                     {
                         if (event.dataTransfer.dropEffect == 'none')
@@ -301,7 +298,7 @@ console.log('here');
 
                     return element;
                 }
-                
+
                 //function 
                 function capitalizeFirstLetter(string) {
                     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -310,7 +307,6 @@ console.log('here');
             }
 
         };
-
 function bereitsVorhanden(str, element) {
     if (str.length == 0) {
         element.style.outlineColor = ' rgb(77, 144, 254)';
@@ -324,7 +320,6 @@ function bereitsVorhanden(str, element) {
                     element.style.outlineColor = 'red';
                 else
                     element.style.outlineColor = ' rgb(77, 144, 254)';
-
                 console.log(this.responseText);
             }
         };
