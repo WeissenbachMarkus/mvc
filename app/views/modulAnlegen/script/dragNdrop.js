@@ -1,7 +1,7 @@
 var dragNdrop =
         {
+            wysiwigID: 'ta',
             elementNum: 0,
-            idsFromTextAreas: [],
             allowDrop:
                     function (ev) {
                         ev.preventDefault();
@@ -17,14 +17,12 @@ var dragNdrop =
                 if (checkMenuItem(data))
                 {
                     var element = this.inhaltModulElementErstellen(data, null);
-                }
-                else
+                } else
                     var element = document.getElementById(data);
                 try
                 {
                     parent.appendChild(element);
-                }
-                catch (ex)
+                } catch (ex)
                 {
                     console.log(ex.message);
                 }
@@ -44,6 +42,7 @@ var dragNdrop =
             saveAllNodes: function () {
 
                 sessionStorage.clear();
+                console.log(sessionStorage);
                 var inhaltModul = document.getElementById('inhaltModul');
                 var children = inhaltModul.childNodes;
                 var childrenIDundSRC = [];
@@ -55,22 +54,19 @@ var dragNdrop =
                     }
                 });
                 sessionStorage.setItem('inhaltModul', JSON.stringify(childrenIDundSRC));
-                if (this.idsFromTextAreas.length > 0)
-                {
-                    console.log('here');
-                    var dataFromTextAreas = [];
-                    this.idsFromTextAreas.forEach(function (id)
-                    {
-                        console.log(CKEDITOR.instances[id].getData());
-                        dataFromTextAreas.push(CKEDITOR.instances[id].getData());
-                    });
 
-                    this.idsFromTextAreas = [];
+//Holen von Inhalten von Wysiwigg Editoren und deren Speicherung
+                var dataFromWysiwigg = [];
+                for (var i = 0; i < dragNdrop.getTextAreaCount(); i++)
+                {
+                    console.log(CKEDITOR.instances[this.wysiwigID + i].getData());
+                    dataFromWysiwigg.push(CKEDITOR.instances[this.wysiwigID + i].getData());
                 }
 
-                sessionStorage.setItem('inhaltTextArea', JSON.stringify(dataFromTextAreas));
+                sessionStorage.setItem('inhaltTextArea', JSON.stringify(dataFromWysiwigg));
                 console.log(sessionStorage['inhaltTextArea']);
-           
+
+//Verbunddatentyp zur Speicherung von Inhalten des Moduls
                 function RowKeySrc(id, src)
                 {
                     this.id = id;
@@ -141,19 +137,23 @@ var dragNdrop =
 
                         var textarea = document.createElement('textarea');
                         textarea.style.width = '100%';
-                        textarea.id = 'ta' + this.elementNum;
+                        textarea.id = this.wysiwigID + this.elementNum;
 
- var inhaltTextArea = JSON.parse(sessionStorage.getItem('inahltTextArea'));
- console.log(inhaltTextArea);
-                        if (inhaltTextArea!=null)
-                        {                
-                            textarea.innerHTML = inhaltTextArea[this.idsFromTextAreas.length];
+                        var inhaltTextArea = JSON.parse(sessionStorage.getItem('inhaltTextArea'));
+                        console.log(inhaltTextArea);
+
+                        var wysiwiggCount = dragNdrop.getTextAreaCount();
+                        
+                        
+                        if (inhaltTextArea!=null &&
+                                inhaltTextArea.length > wysiwiggCount)
+                        {
+                            textarea.innerHTML = inhaltTextArea[wysiwiggCount];
                         }
 
                         var ckeditor = document.createElement('script');
                         ckeditor.innerHTML = ' CKEDITOR.replace(' + textarea.id + ');';
 
-                        this.idsFromTextAreas.push(textarea.id);
                         element.appendChild(textarea);
                         element.appendChild(ckeditor);
 
@@ -212,7 +212,6 @@ var dragNdrop =
                                     xhr.send(formData);
                                     function idAnpassen(id)
                                     {
-                                        console.log('here');
                                         id = dragNdrop.filterID(id);
                                         switch (id)
                                         {
@@ -231,7 +230,6 @@ var dragNdrop =
                                 )();
                             } else
                             {
-
                                 parent.style.border = '1px solid red';
                                 setTimeout(function ()
                                 {
@@ -262,7 +260,6 @@ var dragNdrop =
                         break;
                     case'videoTAG':
 
-                        console.log('inhere');
                         var element = document.createElement('video');
                         element.controls = 'true';
                         element.id = data + this.elementNum;
@@ -287,6 +284,7 @@ var dragNdrop =
                     {
                         dragNdrop.drag(event);
                     });
+
                     element.addEventListener('dragend', function (event)
                     {
                         if (event.dataTransfer.dropEffect == 'none')
@@ -304,7 +302,37 @@ var dragNdrop =
                     return string.charAt(0).toUpperCase() + string.slice(1);
                 }
 
+            },
+            getTextAreaCount: function ()
+            {
+                var children = document.getElementById('inhaltModul').childNodes;
+                var count = 0;
+                for (var i = 1; i < children.length; i++)
+                {
+                    var id = children[i]['id'];
+                    if (id.includes('textarea'))
+                        count++;
+                }
+                return count;
+            }, setNewIDsTextArea: function () {
+
+                var children = document.getElementById('inhaltModul').childNodes;
+
+                for (var i = 1; i < children.length; i++)
+                {
+                     
+                    var id = children[i]['id'];
+                    if (id.includes('textarea'))
+                    {
+                        console.log(id);
+                        var wysiwiggRef= document.getElementById(id);
+                        children[i]['id'] = 'textarea' + (i - 1);
+                        console.log(children[i]['id'])
+
+                    }
+                }
             }
+
 
         };
 function bereitsVorhanden(str, element) {
