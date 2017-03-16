@@ -54,3 +54,8 @@ fieldset
     margin: 3px;
 }
 
+textarea
+{
+    border: black 1px solid;
+}
+

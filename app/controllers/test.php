@@ -15,8 +15,8 @@ class test extends Controller
 {
     protected function sectionInhalt()
     {
-        echo 'fu';
-        $this->view(null,'test/test');
+        echo $_POST['ta1'];
+       
     }
 
 

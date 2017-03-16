@@ -17,6 +17,7 @@ class modulAnlegen extends Controller
     {
         parent::script();
         $this->setScript('dragNdrop');
+         echo '<script type="text/javascript" src="../app/ckeditor/ckeditor.js"></script>';
     }
 
     protected function css()

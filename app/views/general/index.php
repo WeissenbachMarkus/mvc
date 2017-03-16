@@ -9,7 +9,7 @@
 
         <title>Gamp Php</title>
 
-        <?php $this->script(); ?>
+        <?php $controller->script(); ?>
 
     </head>
     <body>

@@ -99,11 +99,11 @@ class upload extends Controller
         header('Location: http://localhost/mvc/public/modulAnlegen');
     }
 
-    public function test($target)
+    public function test()
     {
 
-
-        $target_dir = "../app/models/pictures/" . $target . "/";
+       
+        $target_dir = "../app/models/data/tempModul/";
 
         if (!file_exists($target_dir))
         {
