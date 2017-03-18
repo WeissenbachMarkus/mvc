@@ -169,7 +169,7 @@ class modulAnlegen extends Controller
 
         foreach ($wysiwygContent as $key => $content)
         {
-            $targetDirectoryAndNameOfFile = self::TEMPDIR . '\text' . $key;
+            $targetDirectoryAndNameOfFile = self::TEMPDIR . '/text' . $key;
             $text = fopen($targetDirectoryAndNameOfFile, 'w');
             $sources[$key] = $targetDirectoryAndNameOfFile;
             fwrite($text, $content);
@@ -198,7 +198,10 @@ class modulAnlegen extends Controller
             mkdir($targetDir);
 
         //move file
+        echo $nameOfFile;
+        echo $titleOfDirectory;
         $target = self::DATADIR . '/' . $titleOfDirectory . '/' . $nameOfFile;
+        echo $target;
         rename($srcOfFile, $target);
 
         return $target;

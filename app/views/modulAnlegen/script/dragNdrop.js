@@ -62,16 +62,14 @@ var dragNdrop =
                 sessionStorage.clear();
 
                 var inhaltModul = document.getElementById('inhaltModul');
-                var children = inhaltModul.childNodes;
+                var children = inhaltModul.children;
                 var childrenIDundSRC = [];
 
-                children.forEach(function (element, index) {
-                    if (index > 0)
-                    {
-                        var source = dragNdrop.getSrcOfElement(element);
-                        childrenIDundSRC.push(new RowKeySrc(element.id, source == undefined ? null : source));
-                    }
-                });
+                for (var i = 0; i < children.length; i++)
+                {
+                    var source = dragNdrop.getSrcOfElement(children[i]);
+                    childrenIDundSRC.push(new RowKeySrc(children[i].id, source == undefined ? null : source));
+                }
 
                 sessionStorage.setItem('inhaltModul', JSON.stringify(childrenIDundSRC));
 
@@ -204,7 +202,7 @@ var dragNdrop =
                         {
                             event.preventDefault();
                             var parent = event.target.parentElement;
-                            var children = parent.childNodes;
+                            var children = parent.children;
                             var file = children[0].files;
                             var inhaltsTyp = dragNdrop.filterIDgetTyp(parent.id);
 
@@ -334,7 +332,7 @@ var dragNdrop =
             },
             getWysiwygCount: function ()
             {
-                var children = document.getElementById('inhaltModul').childNodes;
+                var children = document.getElementById('inhaltModul').children;
                 var count = 0;
                 for (var i = 1; i < children.length; i++)
                 {
@@ -346,14 +344,14 @@ var dragNdrop =
 
             }, getWysiwygRefIDs: function ()
             {
-                var children = document.getElementById('inhaltModul').childNodes;
+                var children = document.getElementById('inhaltModul').children;
                 var wysiwygRefIDs = [];
                 for (var i = 1; i < children.length; i++)
                 {
                     var id = children[i]['id'];
                     if (id.includes(contractTypes.wysiwyg))
                     {
-                        var wysiwygRef = document.getElementById(id).childNodes;
+                        var wysiwygRef = document.getElementById(id).children;
                         wysiwygRefIDs.push(wysiwygRef[0]['id']);
                     }
                 }
@@ -488,18 +486,18 @@ var dragNdrop =
             removeChildElements: function (parent)
             {
                 /*var children = parent.children;
-                console.log(children);
-                for (var i = 0; i < children.length; i++)
-                {
-                    if (children[i].children.length > 0)
-                    {
-                        this.removeChildElements(children[i]);
-                        children[i].remove();
-                    } else
-                        children[i].remove();
-                }
-                return;*/
-                parent.innerHTML='';
+                 console.log(children);
+                 for (var i = 0; i < children.length; i++)
+                 {
+                 if (children[i].children.length > 0)
+                 {
+                 this.removeChildElements(children[i]);
+                 children[i].remove();
+                 } else
+                 children[i].remove();
+                 }
+                 return;*/
+                parent.innerHTML = '';
             }
 
         };
