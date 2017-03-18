@@ -50,9 +50,12 @@ class modulAnlegen extends Controller
 
     public function upload()
     {
+        if (!is_dir(self::DATADIR))
+            mkdir(self::DATADIR);
+
         $target_dir = self::TEMPDIR . '/';
 
-        if (!file_exists($target_dir))
+        if (!is_dir($target_dir))
         {
             mkdir($target_dir);
         }

@@ -408,8 +408,7 @@ var dragNdrop =
                             {
                                 element.style.outlineColor = 'red';
                                 dragNdrop.titleExists = true;
-                            }
-                            else
+                            } else
                             {
                                 element.style.outlineColor = ' rgb(77, 144, 254)';
                                 dragNdrop.titleExists = false;
@@ -485,6 +484,22 @@ var dragNdrop =
 
                 return typesAndSrcs;
 
+            },
+            removeChildElements: function (parent)
+            {
+                /*var children = parent.children;
+                console.log(children);
+                for (var i = 0; i < children.length; i++)
+                {
+                    if (children[i].children.length > 0)
+                    {
+                        this.removeChildElements(children[i]);
+                        children[i].remove();
+                    } else
+                        children[i].remove();
+                }
+                return;*/
+                parent.innerHTML='';
             }
 
         };

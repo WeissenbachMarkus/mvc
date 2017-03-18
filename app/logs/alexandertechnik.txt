@@ -118,3 +118,6 @@
 2017-03-18 01:10    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'safsdf' for key 'PRIMARY'
 2017-03-18 01:11    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'dsf' for key 'PRIMARY'
 2017-03-18 13:04    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'Karl' for key 'PRIMARY'
+2017-03-18 13:54    ERROR    Statement konnte nicht ausgefuehrt werden: Cannot add or update a child row: a foreign key constraint fails (`alexandertechnik`.`modul`, CONSTRAINT `fk_Modul_User1` FOREIGN KEY (`User_u_email`) REFERENCES `user` (`u_email`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+2017-03-18 14:00    ERROR    Statement konnte nicht ausgefuehrt werden: Cannot add or update a child row: a foreign key constraint fails (`alexandertechnik`.`modul`, CONSTRAINT `fk_modul_masterplan1` FOREIGN KEY (`masterplan_m_id`) REFERENCES `masterplan` (`m_id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+2017-03-18 14:00    ERROR    Statement konnte nicht ausgefuehrt werden: Cannot add or update a child row: a foreign key constraint fails (`alexandertechnik`.`modul`, CONSTRAINT `fk_modul_masterplan1` FOREIGN KEY (`masterplan_m_id`) REFERENCES `masterplan` (`m_id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
