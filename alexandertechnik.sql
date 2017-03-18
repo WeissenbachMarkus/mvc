@@ -53,7 +53,7 @@ CREATE TABLE `chargeable` (
   `c_price` int(11) NOT NULL,
   `c_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`c_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,12 +199,12 @@ DROP TABLE IF EXISTS `message`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `message` (
   `m_id` int(11) NOT NULL AUTO_INCREMENT,
-  `m_afterXdays` int(11) DEFAULT NULL,
+  `m_afterXdays` int(11) NOT NULL,
   `m_modelUsageLimit` int(11) DEFAULT NULL,
   `m_message` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`m_id`),
   UNIQUE KEY `m_id_UNIQUE` (`m_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,6 +213,7 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
+INSERT INTO `message` VALUES (5,3,5,NULL),(6,3,5,NULL),(7,3,5,NULL),(8,3,5,NULL),(9,3,5,NULL),(10,3,5,NULL);
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,11 +226,11 @@ DROP TABLE IF EXISTS `modul`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `modul` (
   `m_name` varchar(50) NOT NULL,
-  `m _icon` varchar(50) DEFAULT NULL,
+  `m_icon` varchar(50) DEFAULT NULL,
   `m_finished` tinyint(4) DEFAULT '0',
   `m_showInProgress` tinyint(4) DEFAULT '0',
   `chargeable_c_id` int(11) DEFAULT NULL,
-  `masterplan_m_id` int(11) NOT NULL,
+  `masterplan_m_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`m_name`),
   UNIQUE KEY `m_name_UNIQUE` (`m_name`),
   KEY `fk_modul_chargeable1_idx` (`chargeable_c_id`),
@@ -258,15 +259,15 @@ DROP TABLE IF EXISTS `modulcontent`;
 CREATE TABLE `modulcontent` (
   `mc_id` int(11) NOT NULL AUTO_INCREMENT,
   `mc_position` int(11) NOT NULL,
+  `Modul_m_name` varchar(50) NOT NULL,
   `mc_text` varchar(50) DEFAULT NULL,
   `mc_image` varchar(50) DEFAULT NULL,
   `mc_audio` varchar(50) DEFAULT NULL,
   `mc_video` varchar(50) DEFAULT NULL,
-  `Modul_m_name` varchar(50) NOT NULL,
   PRIMARY KEY (`mc_id`,`mc_position`),
   KEY `fk_ModulInhalt_Modul_idx` (`Modul_m_name`),
-  CONSTRAINT `fk_ModulInhalt_Modul` FOREIGN KEY (`Modul_m_name`) REFERENCES `modul` (`m_name`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_ModulInhalt_Modul` FOREIGN KEY (`Modul_m_name`) REFERENCES `modul` (`m_name`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -359,7 +360,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('chris','../app/models/pictures/userIcons/default.jpg','chris@gmy.at','59eec1dd352fbd3c453fe8d40958fbf77c1d683636d43fb2d6e886774dc11c68',1,0),('markus2','../app/models/pictures/userIcons/default.jpg','markus2@gmx.at','60779550b85deb565cae37b08067783680a31d38319678f91738bc0dae17f2e6',0,0),('markus','../app/models/pictures/userIcons/default.jpg','markus@gmx.at','03d32f1e2b6a2a016c21f326d651f34ae47d13d424b29d961309963a8c28e96e',1,0);
+INSERT INTO `user` VALUES ('chris','../app/models/pictures/userIcons/default.jpg','chris@gmy.at','59eec1dd352fbd3c453fe8d40958fbf77c1d683636d43fb2d6e886774dc11c68',1,0),('markus2','../app/models/pictures/userIcons/default.jpg','markus2@gmx.at','60779550b85deb565cae37b08067783680a31d38319678f91738bc0dae17f2e6',0,0),('markus','../app/models/pictures/userIcons/default.jpg','markus@gmx.at','03d32f1e2b6a2a016c21f326d651f34ae47d13d424b29d961309963a8c28e96e',1,0),('test','../app/models/pictures/userIcons/default.jpg','test@gmx.at','bd38d5904cb89cc02b4e7c93b4e7be6596223aedd08181a6f6058cf7d612b440',0,0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,4 +399,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-17 19:32:10
+-- Dump completed on 2017-03-18 18:02:37

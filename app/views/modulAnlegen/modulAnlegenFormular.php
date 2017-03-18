@@ -13,7 +13,7 @@
         </fieldset>  
         <input id="submit" type="submit" value="Fertig">
     </fieldset>
-
+    <p id="error"></p>
 </form>
 
 <ul id="modulMenu" class=" col-3">

@@ -103,7 +103,6 @@ class modulAnlegen extends Controller
         if (strlen($title) > 0)
         {
             $success = $model->modulAnlegenSetModul($title);
-            echo $success;
 
             if ($success)
             {
@@ -117,7 +116,7 @@ class modulAnlegen extends Controller
                     switch ($type)
                     {
                         case self::TEXT:
-                            echo $model->modulAnlegenSetModulInhalt($position, $title, $newSrc, null, null, null);
+                            $model->modulAnlegenSetModulInhalt($position, $title, $newSrc, null, null, null);
                             break;
 
                         case self::IMG:
@@ -125,15 +124,15 @@ class modulAnlegen extends Controller
                             break;
 
                         case self::AUD:
-                            echo $model->modulAnlegenSetModulInhalt($position, $title, null, null, $newSrc, null);
+                            $model->modulAnlegenSetModulInhalt($position, $title, null, null, $newSrc, null);
                             break;
                     }
 
                     $position++;
                 }
-
                 $this->removeFilesInTempDir();
             }
+            echo true;
         } else
             echo 'Kein Name wurde eingegeben!';
     }
@@ -198,10 +197,7 @@ class modulAnlegen extends Controller
             mkdir($targetDir);
 
         //move file
-        echo $nameOfFile;
-        echo $titleOfDirectory;
         $target = self::DATADIR . '/' . $titleOfDirectory . '/' . $nameOfFile;
-        echo $target;
         rename($srcOfFile, $target);
 
         return $target;

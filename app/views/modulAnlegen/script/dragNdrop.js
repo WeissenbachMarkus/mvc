@@ -212,7 +212,9 @@ var dragNdrop =
                                 (function ()
                                 {
                                     var formData = new FormData();
-                                    formData.append('upload', file[0], file[0].name);
+                                    var nameWitoutSpaces = file[0].name.replace(/\s+/g, '');
+                                    console.log(nameWitoutSpaces);
+                                    formData.append('upload', file[0], nameWitoutSpaces);
                                     var xhr = new XMLHttpRequest();
                                     xhr.open('POST', 'modulAnlegen/upload/' + inhaltsTyp, true);
                                     xhr.onload = function () {
@@ -283,6 +285,7 @@ var dragNdrop =
 
                         var element = document.createElement('video');
                         element.controls = 'true';
+                        element.style.width = '100%';
                         element.id = type + this.elementNum;
                         var source = document.createElement('source');
                         source.src = src;
@@ -426,8 +429,7 @@ var dragNdrop =
 
                 if (dragNdrop.titleExists)
                 {
-                    alert('fu');
-                    //todo message to user
+                    this.setMessage('Titel existiert bereits!');
                     return false;
                 }
 
@@ -435,6 +437,7 @@ var dragNdrop =
 
                 if (modulTitle.length == 0)
                 {
+                    this.setMessage('Ein Titel muss eingegeben werden!');
                     var fieldsetName = document.getElementById('fieldsetName')
                     fieldsetName.style.border = '1px solid red';
                     setTimeout(function ()
@@ -455,7 +458,19 @@ var dragNdrop =
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
-                        console.log(this.responseText);
+
+                        var response = this.responseText
+                        console.log(response);
+                        if (response == 1)
+                        {
+                            dragNdrop.clearModul();
+                            dragNdrop.setMessage('Modul wurde gespeichert!');
+                        }
+                        else
+                        {
+                            console.log(response);
+                            dragNdrop.setMessage('Modul konnte nicht gespeichert werden!');
+                        }
                     }
                 };
                 xmlhttp.open('POST', 'modulAnlegen/submit', true);
@@ -463,6 +478,15 @@ var dragNdrop =
 
 
 
+            },
+            setMessage: function (message)
+            {
+                var error = document.getElementById('error');
+                error.innerHTML = message;
+                setTimeout(function ()
+                {
+                    error.innerHTML = '';
+                }, 1000);
             },
             getPositions: function ()
             {
@@ -483,21 +507,10 @@ var dragNdrop =
                 return typesAndSrcs;
 
             },
-            removeChildElements: function (parent)
+            clearModul: function ()
             {
-                /*var children = parent.children;
-                 console.log(children);
-                 for (var i = 0; i < children.length; i++)
-                 {
-                 if (children[i].children.length > 0)
-                 {
-                 this.removeChildElements(children[i]);
-                 children[i].remove();
-                 } else
-                 children[i].remove();
-                 }
-                 return;*/
-                parent.innerHTML = '';
+                var content = document.getElementById('inhaltModul');
+                content.innerHTML = '';
             }
 
         };
