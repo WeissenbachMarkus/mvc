@@ -24,9 +24,9 @@ class alexandertechnik extends Database
     public function registerRegistrieren($u_nickname, $u_email, $u_password, $admin)
     {
 
-        $columnnames = array('u_nickname', 'u_email', 'u_password','u_admin');
+        $columnnames = array('u_nickname', 'u_email', 'u_password', 'u_admin');
 
-        $values = array($u_nickname, $u_email, hash('sha256', $u_password),$admin);
+        $values = array($u_nickname, $u_email, hash('sha256', $u_password), $admin);
 
         try
         {
@@ -56,7 +56,7 @@ class alexandertechnik extends Database
      */
     public function loginFindEmailAndPassword($email, $password)
     {
-        return $this->generalSelectStatementWithCatchedException('user', array('u_nickname','u_email','u_password'),'where u_email=? and u_password=? and u_admin=1',array($email,hash('sha256',$password)));
+        return $this->generalSelectStatementWithCatchedException('user', array('u_nickname', 'u_email', 'u_password'), 'where u_email=? and u_password=? and u_admin=1', array($email, hash('sha256', $password)));
     }
 
     /**
@@ -67,20 +67,60 @@ class alexandertechnik extends Database
     {
         return $this->generalSelectStatementWithCatchedException('user', 'u_email', 'where u_email=?', $email);
     }
-   
+
     public function userListAllUsers()
     {
-        return $this->generalSelectStatementWithCatchedException('user', array('u_icon','u_nickname','u_email'));             
+        return $this->generalSelectStatementWithCatchedException('user', array('u_icon', 'u_nickname', 'u_email'));
     }
-    
+
     public function statisticGetUser($nickname)
     {
         return $this->generalSelectStatementWithCatchedException('user', '*', 'where u_nickname= ?', $nickname);
     }
-    
+
     public function modulAnlegenGetNames($name)
     {
-        return $this->generalSelectStatementWithCatchedException('modul', 'm_name','where m_name=?',$name);
+        return $this->generalSelectStatementWithCatchedException('modul', 'm_name', 'where m_name=?', $name);
+    }
+
+    public function modulAnlegenSetModul($name, $icon = null, $finished = null, $showInProgess = null, $chargeable = null, $masterplan = null)
+    {
+
+        $columnnames = array('m_name', 'm_icon', 'm_finished', 'm_showInProgress', 'chargeable_c_id', 'masterplan_m_id');
+        $values = array($name, $icon, $finished, $showInProgess, $chargeable, $masterplan);
+
+        $this->killNullColumns($columnnames, $values);
+
+        try
+        {
+            $this->generalInsertStatement('modul', $columnnames, $values);
+        } catch (Exception $ex)
+        {
+            echo $ex->getMessage();
+            return false;
+        }
+
+        return true;
+    }
+
+    public function modulAnlegenSetModulInhalt($position, $modulName, $text = null, $image = null, $audio = null, $video = null)
+    {
+
+        $columnnames = array('mc_position', 'Modul_m_name', 'mc_text', 'mc_image', 'mc_audio', 'mc_video');
+        
+        $values = array($position, $modulName, $text, $image, $audio, $video);
+
+        $this->killNullColumns($columnnames, $values);
+
+        try
+        {
+            $this->generalInsertStatement('modulcontent', $columnnames, $values);
+        } catch (Exception $ex)
+        {
+            return $ex->getMessage();
+        }
+
+        return true;
     }
 
 }

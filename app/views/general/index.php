@@ -7,9 +7,7 @@
         <?php $this->css(); ?>
         <?php $controller->cookieSytle2CSS(); ?>
 
-        <title>Gamp Php</title>
-
-        <?php $controller->script(); ?>
+        <title>Gamp Php</title>   
 
     </head>
     <body>
@@ -51,6 +49,9 @@
             <a href="<?= get_class($this) ?>/setStyle/2"> Stil2</a>
             <a href="<?= get_class($this) ?>/setStyle/1"> Stil </a>
         </div>
+
+        <?php $controller->script(); ?>
+
     </body>
 </html>
 

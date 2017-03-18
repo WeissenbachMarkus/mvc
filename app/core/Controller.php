@@ -103,9 +103,7 @@ abstract class Controller
 
     protected function script()
     {
-        echo '<script src="../app/views/general/cookie.js"></script>';
-       
-        
+           
     }
 
     /**

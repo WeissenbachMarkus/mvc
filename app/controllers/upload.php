@@ -99,28 +99,4 @@ class upload extends Controller
         header('Location: http://localhost/mvc/public/modulAnlegen');
     }
 
-    public function test()
-    {
-
-       
-        $target_dir = "../app/models/data/tempModul/";
-
-        if (!file_exists($target_dir))
-        {
-            mkdir($target_dir);
-        }
-
-        $target_file = $target_dir . basename($_FILES["upload"]["name"]);
-
-        if (move_uploaded_file($_FILES["upload"]["tmp_name"], $target_file))
-            echo $target_file;
-        else
-        {
-            foreach ($_FILES['upload'] as $key => $value)
-            {
-                echo 'Key: ' . $key . ' value: ' . $value;
-            }
-        }
-    }
-
 }

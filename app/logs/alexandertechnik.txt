@@ -51,3 +51,70 @@
 2017-01-12 10:55    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'markus2@gmx.at' for key 'PRIMARY'
 2017-01-12 15:52    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'Karl@gmx.at' for key 'PRIMARY'
 2017-01-12 15:56    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'markus5@gmx.at' for key 'PRIMARY'
+2017-03-17 20:21    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'peter' for key 'PRIMARY'
+2017-03-17 20:59    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:00    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:01    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:01    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:01    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:01    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:01    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:01    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:02    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:02    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:02    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:02    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:02    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:02    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:02    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:02    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:02    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:02    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:02    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:02    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:02    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:02    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'peteddr' for key 'PRIMARY'
+2017-03-17 21:04    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'peteddr' for key 'PRIMARY'
+2017-03-17 21:04    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'peteddr' for key 'PRIMARY'
+2017-03-17 21:04    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'peteddr' for key 'PRIMARY'
+2017-03-17 21:04    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'peteddr' for key 'PRIMARY'
+2017-03-17 21:04    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'peteddr' for key 'PRIMARY'
+2017-03-17 21:04    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'peteddr' for key 'PRIMARY'
+2017-03-17 21:04    ERROR    Statement konnte nicht ausgefuehrt werden: Cannot add or update a child row: a foreign key constraint fails (`alexandertechnik`.`modul`, CONSTRAINT `fk_modul_chargeable1` FOREIGN KEY (`chargeable_c_id`) REFERENCES `chargeable` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+2017-03-17 21:04    ERROR    Statement konnte nicht ausgefuehrt werden: Cannot add or update a child row: a foreign key constraint fails (`alexandertechnik`.`modul`, CONSTRAINT `fk_modul_chargeable1` FOREIGN KEY (`chargeable_c_id`) REFERENCES `chargeable` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+2017-03-17 21:04    ERROR    Statement konnte nicht ausgefuehrt werden: Cannot add or update a child row: a foreign key constraint fails (`alexandertechnik`.`modul`, CONSTRAINT `fk_modul_chargeable1` FOREIGN KEY (`chargeable_c_id`) REFERENCES `chargeable` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+2017-03-17 21:04    ERROR    Statement konnte nicht ausgefuehrt werden: Cannot add or update a child row: a foreign key constraint fails (`alexandertechnik`.`modul`, CONSTRAINT `fk_modul_chargeable1` FOREIGN KEY (`chargeable_c_id`) REFERENCES `chargeable` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+2017-03-17 21:04    ERROR    Statement konnte nicht ausgefuehrt werden: Cannot add or update a child row: a foreign key constraint fails (`alexandertechnik`.`modul`, CONSTRAINT `fk_modul_chargeable1` FOREIGN KEY (`chargeable_c_id`) REFERENCES `chargeable` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+2017-03-17 21:04    ERROR    Statement konnte nicht ausgefuehrt werden: Cannot add or update a child row: a foreign key constraint fails (`alexandertechnik`.`modul`, CONSTRAINT `fk_modul_chargeable1` FOREIGN KEY (`chargeable_c_id`) REFERENCES `chargeable` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+2017-03-17 21:04    ERROR    Statement konnte nicht ausgefuehrt werden: Cannot add or update a child row: a foreign key constraint fails (`alexandertechnik`.`modul`, CONSTRAINT `fk_modul_chargeable1` FOREIGN KEY (`chargeable_c_id`) REFERENCES `chargeable` (`c_id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+2017-03-17 21:22    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-17 21:23    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-18 00:01    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'test' for key 'PRIMARY'
+2017-03-18 00:13    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'karl' for key 'PRIMARY'
+2017-03-18 00:20    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'KarlSitzt3' for key 'PRIMARY'
+2017-03-18 00:24    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'ddfdf' for key 'PRIMARY'
+2017-03-18 01:06    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'dsfsf' for key 'PRIMARY'
+2017-03-18 01:09    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'safsdf' for key 'PRIMARY'
+2017-03-18 01:10    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'safsdf' for key 'PRIMARY'
+2017-03-18 01:10    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'safsdf' for key 'PRIMARY'
+2017-03-18 01:10    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'safsdf' for key 'PRIMARY'
+2017-03-18 01:10    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'safsdf' for key 'PRIMARY'
+2017-03-18 01:11    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'dsf' for key 'PRIMARY'
+2017-03-18 13:04    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'Karl' for key 'PRIMARY'

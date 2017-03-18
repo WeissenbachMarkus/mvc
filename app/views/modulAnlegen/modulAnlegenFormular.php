@@ -1,9 +1,9 @@
 <form class="col-9" action ="" method="POST">
     <fieldset>
         <legend> Modulanlegen </legend>
-        <fieldset>
+        <fieldset id="fieldsetName">
             <legend> Name </legend>
-            <input id="titel" type = "text" name = "titel" placeholder = "Name" onkeyup="bereitsVorhanden(this.value,this)">
+            <input id="title" type = "text" name = "title" placeholder = "Name" onkeyup="dragNdrop.checkIfTitelExists(this.value, this)">
             <fieldset id="inhaltFieldset">
                 <legend>Inhalt</legend>
                 <ul id="inhaltModul" 
@@ -11,7 +11,7 @@
                 </ul>
             </fieldset>
         </fieldset>  
-        <input id="fertig" type="submit" value="Fertig">
+        <input id="submit" type="submit" value="Fertig">
     </fieldset>
 
 </form>

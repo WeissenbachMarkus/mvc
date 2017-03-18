@@ -105,46 +105,50 @@ abstract class Database
         }
     }
 
-    /**
-     * genereller Insert
-     * wirft Exception
-     * @param type $table
-     * @param type $columnnames
-     * @param type $values
-     * @param mysqli $databaseconnection
-     */
-    protected function generalInsertStatement($table, $columnnames, $values)
-    {
-
+    
         /**
          * Gibt die benötigte Anzahl ? für das Statement zurück
          * @param type $count
          * @return type
          */
-        function writeQuestionmarks($count)
+        private function writeQuestionmarks($count)
         {
+            if($count>1)
+            {
             for ($index = 0; $index < $count; $index++)
             {
                 $string[] = '?';
             }
 
             return implode(',', $string);
+            }else 
+                return '?';
         }
+        
+    /**
+     * genereller Insert
+     * wirft Exception
+     * @param type $table
+     * @param type $columnnames
+     * @param type $values
+     */
+    protected function generalInsertStatement($table, $columnnames, $values)
+    {
+
 
         //verbindet zur Datenbank
         $databaseconnection = $this->connectWithDatabaseFromArray();
 
         //generiert die erforderlichen Fragezeichen
-        $questionmarks = writeQuestionmarks(count($columnnames));
+        $questionmarks = $this->writeQuestionmarks(count($columnnames));
 
         //Array Columnnames to String
         if (is_array($columnnames))
             $columnnames = implode(', ', $columnnames);
 
-
         //prepare statemant
         if (!$statement = $databaseconnection->prepare('Insert into ' . $table . ' (' . $columnnames . ') values (' . $questionmarks . ') '))
-            throw new Exception('Prepare fehlgeschlagen !');
+            throw new Exception('Prepare fehlgeschlagen! (Spalten)');
 
         //findet die typen zu den Werten
         $types = $this->findTypes($values);
@@ -336,5 +340,35 @@ abstract class Database
             return false;
         }
     }
+    
+    /**
+     * Wenn in der Insert-Methode Null-Werte vorkommen können,
+     * kann diese hiermit aus dem Value-Array und den
+     * damit unötig werdenden Clumn-Array entfernen
+     * 
+     * @param array $columnnames :Referenz
+     * @param array $values :Referenz
+     */
+    protected function killNullColumns(&$columnnames, &$values)
+        {
+            $indexToKill = [];
+
+            //finde Null werte
+            foreach ($values as $key => $content)
+            {
+                if ($content == null)
+                    $indexToKill[$key] = $key;
+            }
+
+            //entferne Nullwerte und überflüssige Spalten
+            
+            foreach ($indexToKill as $value)
+            {
+                unset($values[$value]);
+                unset($columnnames[$value]);
+            }
+            
+        }
+
 
 }
