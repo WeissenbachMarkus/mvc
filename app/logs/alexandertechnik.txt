@@ -125,3 +125,42 @@
 2017-03-18 17:23    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'asfdf' for key 'PRIMARY'
 2017-03-18 17:40    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'test5' for key 'PRIMARY'
 2017-03-18 17:40    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'test5' for key 'PRIMARY'
+2017-03-18 23:24    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'TauchenMitAlexander' for key 'PRIMARY'
+2017-03-18 23:26    ERROR    Statement konnte nicht ausgefuehrt werden: Duplicate entry 'dritterVersuch' for key 'PRIMARY'
+2017-03-19 00:04    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:05    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:05    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:05    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:05    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:05    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:05    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:05    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:05    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:05    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:05    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:05    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:07    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:07    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:07    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:07    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:07    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:08    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:08    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:08    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:08    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:08    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:08    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:08    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:09    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:09    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:09    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:10    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:10    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:10    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:10    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:10    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:10    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:20    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:22    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:23    ERROR    Prepare fehlgeschlagen!
+2017-03-19 00:32    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement

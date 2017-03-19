@@ -12,8 +12,10 @@ class App
         session_start();
 
         $url = $this->parseUrl();
-       
-        if (isset($_SESSION['user']) || isset($url[1]) && $url[1] == 'verarbeitung')
+
+
+
+        if (isset($_SESSION['user']) || isset($url[1]) && $url[1] == 'verarbeitung' || isset($url[0]) && $url[0] == 'schnittstelle')
         {
 
             if (file_exists('../app/controllers/' . $url[0] . '.php'))
@@ -37,7 +39,6 @@ class App
             }
 
             $this->params = $url ? array_values($url) : [];
-            
         } elseif (!$this->urlIstLoginUrl($this->urlToString($url)))
             header('Location: http://localhost/mvc/public/login');
         else

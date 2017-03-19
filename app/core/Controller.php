@@ -51,7 +51,6 @@ abstract class Controller
 
     private function setLogger()
     {
-        require_once '../app/core/Logger.php';
         $this->logger = new Logger('../app/logs/' . get_class($this) . '.txt');
     }
 
@@ -103,7 +102,7 @@ abstract class Controller
 
     protected function script()
     {
-           
+        
     }
 
     /**

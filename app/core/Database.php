@@ -23,15 +23,23 @@ abstract class Database
      * Nachricht kann für den User gesetzt werden!
      * @param type $message
      */
-    
     protected function __construct()
     {
         $this->setLogger();
     }
+
     protected function setFehler($message)
     {
-        session_start();
+        $this->startSession();
         $_SESSION['fehler'][] = $message;
+    }
+
+    protected function startSession()
+    {
+        if (!isset($_SESSION))
+        {
+            session_start();
+        }
     }
 
     /**
@@ -51,8 +59,7 @@ abstract class Database
 
     private function setLogger()
     {
-        require_once '../app/core/Logger.php';
-        $this->logger = new Logger('../app/logs/'.get_class($this).'.txt');
+        $this->logger = new Logger('../app/logs/' . get_class($this) . '.txt');
     }
 
     /**
@@ -105,26 +112,25 @@ abstract class Database
         }
     }
 
-    
-        /**
-         * Gibt die benötigte Anzahl ? für das Statement zurück
-         * @param type $count
-         * @return type
-         */
-        private function writeQuestionmarks($count)
+    /**
+     * Gibt die benötigte Anzahl ? für das Statement zurück
+     * @param type $count
+     * @return type
+     */
+    private function writeQuestionmarks($count)
+    {
+        if ($count > 1)
         {
-            if($count>1)
-            {
             for ($index = 0; $index < $count; $index++)
             {
                 $string[] = '?';
             }
 
             return implode(',', $string);
-            }else 
-                return '?';
-        }
-        
+        } else
+            return '?';
+    }
+
     /**
      * genereller Insert
      * wirft Exception
@@ -215,7 +221,7 @@ abstract class Database
      * uebergeben werden.
      * @return boolean
      */
-   private function generalSelectStatement($table, $columnnames, $condition = '', $values = null)
+    private function generalSelectStatement($table, $columnnames, $condition = '', $values = null)
     {
         $databaseconnection = $this->connectWithDatabaseFromArray();
 
@@ -226,7 +232,7 @@ abstract class Database
         //prepare statemant
         if (!$statement = $databaseconnection->prepare('SELECT ' . $columnnames . ' FROM ' . $table . ' ' . $condition))
         {
-            $this->getLogger()->logThis('Prepare fehlgeschlagen!',2);
+            $this->getLogger()->logThis('Prepare fehlgeschlagen!', 2);
             throw new Exception('Prepare fehlgeschlagen!');
         }
 
@@ -335,12 +341,12 @@ abstract class Database
             return $this->generalSelectStatement($table, $columnnames, $condition, $values);
         } catch (Exception $ex)
         {
-            
+
             $this->setFehler('Fehler bei der Authentifizierung!');
             return false;
         }
     }
-    
+
     /**
      * Wenn in der Insert-Methode Null-Werte vorkommen können,
      * kann diese hiermit aus dem Value-Array und den
@@ -350,25 +356,23 @@ abstract class Database
      * @param array $values :Referenz
      */
     protected function killNullColumns(&$columnnames, &$values)
+    {
+        $indexToKill = [];
+
+        //finde Null werte
+        foreach ($values as $key => $content)
         {
-            $indexToKill = [];
-
-            //finde Null werte
-            foreach ($values as $key => $content)
-            {
-                if ($content == null)
-                    $indexToKill[$key] = $key;
-            }
-
-            //entferne Nullwerte und überflüssige Spalten
-            
-            foreach ($indexToKill as $value)
-            {
-                unset($values[$value]);
-                unset($columnnames[$value]);
-            }
-            
+            if ($content == null)
+                $indexToKill[$key] = $key;
         }
 
+        //entferne Nullwerte und überflüssige Spalten
+
+        foreach ($indexToKill as $value)
+        {
+            unset($values[$value]);
+            unset($columnnames[$value]);
+        }
+    }
 
 }

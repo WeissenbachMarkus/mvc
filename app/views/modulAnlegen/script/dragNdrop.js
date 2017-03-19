@@ -476,8 +476,6 @@ var dragNdrop =
                 xmlhttp.open('POST', 'modulAnlegen/submit', true);
                 xmlhttp.send(data);
 
-
-
             },
             setMessage: function (message)
             {
@@ -511,6 +509,32 @@ var dragNdrop =
             {
                 var content = document.getElementById('inhaltModul');
                 content.innerHTML = '';
+            },
+            test: function ()
+            {
+
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+
+
+                        var urlCreator = window.URL || window.webkitURL;
+                        var imageUrl = urlCreator.createObjectURL(this.response);
+
+                        var element = document.createElement('audio');
+                        element.controls = 'true';
+                        element.style.width = '100%';
+
+                        var source = document.createElement('source');
+                        source.src = 'data:audio/mpeg;base64,'+imageUrl;
+                        element.appendChild(source);
+                        var parent = document.getElementById('inhaltModul');
+                        parent.appendChild(element);
+                    }
+                };
+                xmlhttp.open('GET', 'schnittstelle/KarlGeht/mc_audio/0', true);
+                xmlhttp.responseType = "blob";
+                xmlhttp.send();
             }
 
         };

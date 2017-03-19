@@ -107,7 +107,7 @@ class alexandertechnik extends Database
     {
 
         $columnnames = array('mc_position', 'Modul_m_name', 'mc_text', 'mc_image', 'mc_audio', 'mc_video');
-        
+
         $values = array($position, $modulName, $text, $image, $audio, $video);
 
         $this->killNullColumns($columnnames, $values);
@@ -121,6 +121,21 @@ class alexandertechnik extends Database
         }
 
         return true;
+    }
+
+    public function schnittstelleGetAllModuls()
+    {
+        return $this->generalSelectStatementWithCatchedException('modul', '*');
+    }
+
+    public function schnittstelleGetModulContent($modulName)
+    {
+        return $this->generalSelectStatementWithCatchedException('modulcontent', '*', 'where Modul_m_name=?', $modulName);
+    }
+
+    public function schnittstelleGetSpecificModulContent($modulName, $columnname, $position)
+    {
+        return $this->generalSelectStatementWithCatchedException('modulcontent', $columnname, 'where mc_position=? and Modul_m_name=?', array($position, $modulName));
     }
 
 }
