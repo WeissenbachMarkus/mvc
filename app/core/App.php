@@ -15,7 +15,7 @@ class App
 
 
 
-        if (isset($_SESSION['user']) || isset($url[1]) && $url[1] == 'verarbeitung' || isset($url[0]) && $url[0] == 'schnittstelle')
+        if (isset($_SESSION['user']) ||isset($url[1]) && $url[1] == 'verarbeitung' || isset($url[0]) && $url[0] == 'schnittstelle')
         {
 
             if (file_exists('../app/controllers/' . $url[0] . '.php'))

@@ -341,7 +341,7 @@ abstract class Database
             return $this->generalSelectStatement($table, $columnnames, $condition, $values);
         } catch (Exception $ex)
         {
-
+            echo $ex->getMessage();
             $this->setFehler('Fehler bei der Authentifizierung!');
             return false;
         }

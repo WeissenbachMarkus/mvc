@@ -164,3 +164,13 @@
 2017-03-19 00:22    ERROR    Prepare fehlgeschlagen!
 2017-03-19 00:23    ERROR    Prepare fehlgeschlagen!
 2017-03-19 00:32    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-19 19:23    ERROR    Prepare fehlgeschlagen!
+2017-03-19 19:24    ERROR    Prepare fehlgeschlagen!
+2017-03-19 19:24    ERROR    Prepare fehlgeschlagen!
+2017-03-19 19:25    ERROR    Prepare fehlgeschlagen!
+2017-03-19 19:28    ERROR    Prepare fehlgeschlagen!
+2017-03-19 19:28    ERROR    Prepare fehlgeschlagen!
+2017-03-19 19:28    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-19 19:28    ERROR    Statement konnte nicht ausgefuehrt werden: No data supplied for parameters in prepared statement
+2017-03-19 19:28    ERROR    Prepare fehlgeschlagen!
+2017-03-19 19:29    ERROR    Prepare fehlgeschlagen!

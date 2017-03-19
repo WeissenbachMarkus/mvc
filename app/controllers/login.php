@@ -44,5 +44,10 @@ class login extends Controller
             header('Location: http://localhost/mvc/public/login');
         }
     }
+    
+    public function test($email)
+    {
+      echo $this->getModel('alexandertechnik')->getSalt($email)['u_nickname'];
+    }
 
 }

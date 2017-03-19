@@ -8,6 +8,8 @@
 class alexandertechnik extends Database
 {
 
+    const PEPPPER = 5;
+
     protected function __construct()
     {
         parent::__construct();
@@ -26,7 +28,7 @@ class alexandertechnik extends Database
 
         $columnnames = array('u_nickname', 'u_email', 'u_password', 'u_admin');
 
-        $values = array($u_nickname, $u_email, hash('sha256', $u_password), $admin);
+        $values = array($u_nickname, $u_email, hash('sha256', $u_password . $u_nickname . self::PEPPPER), $admin);
 
         try
         {
@@ -48,6 +50,11 @@ class alexandertechnik extends Database
             $this->setFehler('Email bereits vorhanden!');
     }
 
+    public function getSalt($email)
+    {
+        return $this->generalSelectStatementWithCatchedException('user', 'u_nickname', 'where u_email=?', $email)[0];
+    }
+
     /**
      * Ueberprueft ob Email und Passwort in der Datenbank
      * vorhanden sind.
@@ -56,7 +63,7 @@ class alexandertechnik extends Database
      */
     public function loginFindEmailAndPassword($email, $password)
     {
-        return $this->generalSelectStatementWithCatchedException('user', array('u_nickname', 'u_email', 'u_password'), 'where u_email=? and u_password=? and u_admin=1', array($email, hash('sha256', $password)));
+        return $this->generalSelectStatementWithCatchedException('user', array('u_nickname', 'u_email', 'u_password'), 'where u_email=? and u_password=? and u_admin=1', array($email, hash('sha256', $password . $this->getSalt($email)['u_nickname'] . self::PEPPPER)));
     }
 
     /**
