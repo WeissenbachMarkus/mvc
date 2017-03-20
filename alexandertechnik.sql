@@ -246,6 +246,7 @@ CREATE TABLE `modul` (
 
 LOCK TABLES `modul` WRITE;
 /*!40000 ALTER TABLE `modul` DISABLE KEYS */;
+INSERT INTO `modul` VALUES ('Beispiel',NULL,0,0,NULL,NULL),('KarlGeht',NULL,0,0,NULL,NULL);
 /*!40000 ALTER TABLE `modul` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,14 +261,14 @@ CREATE TABLE `modulcontent` (
   `mc_id` int(11) NOT NULL AUTO_INCREMENT,
   `mc_position` int(11) NOT NULL,
   `Modul_m_name` varchar(50) NOT NULL,
-  `mc_text` varchar(50) DEFAULT NULL,
-  `mc_image` varchar(50) DEFAULT NULL,
-  `mc_audio` varchar(50) DEFAULT NULL,
-  `mc_video` varchar(50) DEFAULT NULL,
+  `mc_text` varchar(100) DEFAULT NULL,
+  `mc_image` varchar(100) DEFAULT NULL,
+  `mc_audio` varchar(100) DEFAULT NULL,
+  `mc_video` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`mc_id`,`mc_position`),
   KEY `fk_ModulInhalt_Modul_idx` (`Modul_m_name`),
   CONSTRAINT `fk_ModulInhalt_Modul` FOREIGN KEY (`Modul_m_name`) REFERENCES `modul` (`m_name`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,6 +277,7 @@ CREATE TABLE `modulcontent` (
 
 LOCK TABLES `modulcontent` WRITE;
 /*!40000 ALTER TABLE `modulcontent` DISABLE KEYS */;
+INSERT INTO `modulcontent` VALUES (82,0,'KarlGeht',NULL,NULL,'../app/models/data/KarlGeht/ThePrettyReckless-JustTonight.mp3',NULL),(83,0,'Beispiel','../app/models/data/Beispiel/text0',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `modulcontent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -360,7 +362,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('chris','../app/models/pictures/userIcons/default.jpg','chris@gmy.at','59eec1dd352fbd3c453fe8d40958fbf77c1d683636d43fb2d6e886774dc11c68',1,0),('markus2','../app/models/pictures/userIcons/default.jpg','markus2@gmx.at','60779550b85deb565cae37b08067783680a31d38319678f91738bc0dae17f2e6',0,0),('markus','../app/models/pictures/userIcons/default.jpg','markus@gmx.at','03d32f1e2b6a2a016c21f326d651f34ae47d13d424b29d961309963a8c28e96e',1,0),('test','../app/models/pictures/userIcons/default.jpg','test@gmx.at','bd38d5904cb89cc02b4e7c93b4e7be6596223aedd08181a6f6058cf7d612b440',0,0);
+INSERT INTO `user` VALUES ('dddd','../app/models/pictures/userIcons/default.jpg','d','',0,0),('Markus','../app/models/pictures/userIcons/default.jpg','markus@gmx.at','1bb3ad97360ae312ecaa30e9f067d56d0a9dda7b8457a36d944de65c6c11e55c',1,0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -399,4 +401,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-18 18:02:37
+-- Dump completed on 2017-03-20  8:49:41
